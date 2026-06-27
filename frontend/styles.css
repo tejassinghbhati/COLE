@@ -236,24 +236,61 @@ tbody tr:hover { background: var(--surface-2); }
 .estep p b { color: var(--ink); font-weight: 600; }
 .estep p em { color: var(--ink); font-style: italic; }
 
-/* ---- docs page --------------------------------------------------------- */
-.doc-article { max-width: 840px; margin: 0 auto; }
-.doc-hero { margin: 4px 4px 22px; }
-.doc-hero h1 { font-family: var(--serif); font-size: 30px; font-weight: 700;
-  letter-spacing: -.02em; margin: 0 0 10px; color: var(--ink); }
-.doc-hero p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; margin: 0; max-width: 76ch; }
-.doc-section { margin-bottom: 16px; }
-.doc-section h3 { font-family: var(--serif); font-size: 18px; font-weight: 600; margin: 0 0 10px; }
-.doc-section p { color: var(--ink); font-size: 14.5px; line-height: 1.72; margin: 0 0 11px; }
-.doc-section p:last-child { margin-bottom: 0; }
-.doc-section em { font-style: italic; color: var(--accent-ink); }
-.doc-list { margin: 4px 0 0; padding-left: 20px; }
-.doc-list li { color: var(--ink); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
-.doc-list li:last-child { margin-bottom: 0; }
-.doc-caveat { border-left: 3px solid var(--hot); }
+/* ---- "How it works" — book-style monograph ----------------------------- */
 a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
 .ink-hot { color: var(--hot); font-weight: 600; }
 .ink-cold { color: var(--accent-ink); font-weight: 600; }
+
+.book { max-width: 720px; margin: 0 auto; padding: 8px 0 16px; }
+.book-num { font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--accent-ink); font-weight: 600; margin: 4px 0 6px; }
+.book-title { font-family: var(--serif); font-size: 33px; font-weight: 700;
+  letter-spacing: -.02em; line-height: 1.15; margin: 0 0 8px; color: var(--ink); }
+.book-subtitle { font-family: var(--serif); font-style: italic; font-size: 17px;
+  color: var(--ink-soft); margin: 0 0 26px; }
+
+.abstract { background: var(--surface); border: 1px solid var(--line);
+  border-left: 3px solid var(--accent); border-radius: var(--radius);
+  padding: 18px 22px; margin-bottom: 24px; box-shadow: var(--shadow); }
+.abstract h4, .toc h4 { margin: 0 0 8px; font-size: 11px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-soft); }
+.abstract p { font-family: var(--serif); font-size: 15.5px; line-height: 1.72; margin: 0; color: var(--ink); }
+.abstract em { font-style: italic; }
+
+.toc { margin: 0 0 32px; padding: 16px 22px; background: var(--surface-2);
+  border: 1px solid var(--line); border-radius: var(--radius); }
+.toc ol { margin: 0; padding-left: 22px; columns: 2; column-gap: 32px; }
+.toc li { font-size: 13.5px; margin-bottom: 7px; break-inside: avoid; }
+.toc a { color: var(--ink); text-decoration: none; }
+.toc a:hover { color: var(--accent-ink); text-decoration: underline; }
+@media (max-width: 640px) { .toc ol { columns: 1; } }
+
+.chapter { margin: 0 0 36px; scroll-margin-top: 20px; }
+.chapter-num { display: block; font-size: 11px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--accent-ink); font-weight: 600; margin-bottom: 3px; }
+.chapter h2 { font-family: var(--serif); font-size: 25px; font-weight: 700;
+  letter-spacing: -.01em; margin: 0 0 16px; padding-bottom: 9px; border-bottom: 1px solid var(--line); }
+
+.prose p { font-family: var(--serif); font-size: 16px; line-height: 1.8;
+  color: var(--ink); margin: 0 0 15px; }
+.prose p:last-child { margin-bottom: 0; }
+.prose em { font-style: italic; }
+.prose b, .prose strong { font-weight: 700; }
+.prose ul { margin: 6px 0 15px; padding-left: 22px; }
+.prose ul li { font-family: var(--serif); font-size: 15.5px; line-height: 1.74; margin-bottom: 9px; }
+.chapter.intro .prose > p:first-of-type::first-letter {
+  font-family: var(--serif); font-size: 3.2em; line-height: .82; float: left;
+  padding: 6px 11px 0 0; color: var(--accent-ink); font-weight: 700; }
+
+.eq { margin: 16px 0; padding: 6px 4px; text-align: center; overflow-x: auto; overflow-y: hidden; }
+.definition { background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 8px; padding: 13px 17px; margin: 18px 0; font-size: 14px;
+  line-height: 1.66; color: var(--ink); }
+.definition b { color: var(--accent-ink); }
+
+.book-refs { font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; padding-left: 22px; }
+.book-refs li { margin-bottom: 7px; }
+.book-refs em { font-style: italic; }
 
 footer {
   display: flex; justify-content: space-between; padding: 18px 34px;
