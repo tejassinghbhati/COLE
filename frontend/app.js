@@ -26,8 +26,27 @@ document.querySelectorAll(".tab").forEach((t) => {
     t.classList.add("active");
     $("#" + t.dataset.tab).classList.add("active");
     if (t.dataset.tab === "insights") loadInsights();
+    if (t.dataset.tab === "docs") renderDocsMath();
   });
 });
+
+// Typeset the LaTeX in the docs page once KaTeX's auto-render has loaded.
+let mathRendered = false;
+function renderDocsMath() {
+  if (mathRendered) return;
+  if (typeof window.renderMathInElement !== "function") {
+    setTimeout(renderDocsMath, 150);  // KaTeX still loading — retry shortly
+    return;
+  }
+  window.renderMathInElement(document.getElementById("docs"), {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "$", right: "$", display: false },
+    ],
+    throwOnError: false,
+  });
+  mathRendered = true;
+}
 
 // ---- driver bars ----------------------------------------------------------
 function renderDrivers(container, drivers, maxAbs) {
