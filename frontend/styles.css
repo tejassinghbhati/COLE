@@ -236,6 +236,25 @@ tbody tr:hover { background: var(--surface-2); }
 .estep p b { color: var(--ink); font-weight: 600; }
 .estep p em { color: var(--ink); font-style: italic; }
 
+/* ---- docs page --------------------------------------------------------- */
+.doc-article { max-width: 840px; margin: 0 auto; }
+.doc-hero { margin: 4px 4px 22px; }
+.doc-hero h1 { font-family: var(--serif); font-size: 30px; font-weight: 700;
+  letter-spacing: -.02em; margin: 0 0 10px; color: var(--ink); }
+.doc-hero p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.7; margin: 0; max-width: 76ch; }
+.doc-section { margin-bottom: 16px; }
+.doc-section h3 { font-family: var(--serif); font-size: 18px; font-weight: 600; margin: 0 0 10px; }
+.doc-section p { color: var(--ink); font-size: 14.5px; line-height: 1.72; margin: 0 0 11px; }
+.doc-section p:last-child { margin-bottom: 0; }
+.doc-section em { font-style: italic; color: var(--accent-ink); }
+.doc-list { margin: 4px 0 0; padding-left: 20px; }
+.doc-list li { color: var(--ink); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
+.doc-list li:last-child { margin-bottom: 0; }
+.doc-caveat { border-left: 3px solid var(--hot); }
+a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 2px; }
+.ink-hot { color: var(--hot); font-weight: 600; }
+.ink-cold { color: var(--accent-ink); font-weight: 600; }
+
 footer {
   display: flex; justify-content: space-between; padding: 18px 34px;
   border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 11.5px;

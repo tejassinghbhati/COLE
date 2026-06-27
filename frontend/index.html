@@ -38,6 +38,7 @@
     <button class="tab" data-tab="compare">Compare</button>
     <button class="tab" data-tab="insights">Global insights</button>
     <button class="tab" data-tab="predict">Custom profile</button>
+    <button class="tab" data-tab="docs">How it works</button>
   </nav>
 
   <main>
@@ -237,6 +238,129 @@
                dominate.</p></div>
         </div>
       </section>
+    </section>
+
+    <!-- DOCS -------------------------------------------------------------->
+    <section id="docs" class="panel">
+      <article class="doc-article">
+        <header class="doc-hero">
+          <h1>How this works</h1>
+          <p>A plain-language tour of the data, the machine-learning model, and how every
+             number and chart on screen is produced. For the full scientific deep-dive — with
+             the SHAP maths, diagrams and formulas — see
+             <a href="https://github.com/tejassinghbhati/COLE/blob/main/docs/HOW_IT_WORKS.md"
+                target="_blank" rel="noopener">docs/HOW_IT_WORKS.md</a>.</p>
+        </header>
+
+        <div class="card doc-section">
+          <h3>1 · What this is</h3>
+          <p>The Cost of Living Explainer answers a question that a single price tag cannot:
+             <em>why</em> is a city expensive, and <em>who</em> can actually afford to live there?
+             It pairs a predictive model with an explainability layer, so every estimate comes
+             with a breakdown of the forces behind it — not just a number.</p>
+        </div>
+
+        <div class="card doc-section">
+          <h3>2 · The data</h3>
+          <p>Everything is built on <b>real data</b> from <b>Numbeo's Cost of Living Index by
+             City</b> — the most widely cited cross-city reference, aggregated from crowd-sourced
+             prices. The snapshot covers <b>545 cities across 116 countries</b>.</p>
+          <p>Numbeo publishes its indices relative to New York City = 100. This app
+             <b>re-bases everything to New Delhi = 100</b>: each index is divided by New Delhi's
+             value and multiplied by 100. So New Delhi reads 100 on every axis, and a city
+             scoring 300 is roughly three times as expensive as Delhi. The columns used are
+             rent, groceries, restaurants, the overall total (cost of living including rent),
+             and local purchasing power.</p>
+        </div>
+
+        <div class="card doc-section">
+          <h3>3 · The model</h3>
+          <p>An <b>XGBoost</b> gradient-boosted-tree regressor predicts a city's
+             <b>total cost of living</b> from four inputs — rent, groceries, restaurants and
+             local purchasing power — plus its world region. Gradient-boosted trees are the
+             state of the art for this kind of tabular data and capture interactions between
+             factors natively.</p>
+          <p>The model is trained on 80% of the cities and tested on the 20% it never saw.
+             On that hold-out set it reaches <b>R² ≈ 0.99</b> (the share of variation it
+             explains) with an average error of about <b>6.5 index points</b>.</p>
+        </div>
+
+        <div class="card doc-section">
+          <h3>4 · Explaining each prediction (SHAP)</h3>
+          <p>A prediction alone teaches nothing. We use <b>SHAP</b> (SHapley Additive
+             exPlanations), rooted in cooperative game theory, to fairly divide each prediction
+             among its inputs. Every estimate is split into a <em>base value</em> (the typical
+             city) plus a contribution from each factor.</p>
+          <p>Those contributions are the <b>driver bars</b>: a <span class="ink-hot">rust</span>
+             bar pushes a city <em>above</em> the typical city, a <span class="ink-cold">teal</span>
+             bar pulls it <em>below</em>. Across all cities, <b>rent &amp; housing is the single
+             largest driver</b> of total cost — the central real-world finding this tool surfaces.</p>
+        </div>
+
+        <div class="card doc-section">
+          <h3>5 · Similar cities</h3>
+          <p>"Most similar cities" is a separate, unsupervised step: a
+             <b>k-nearest-neighbours</b> search over the standardized cost features. It matches
+             the <em>shape</em> of a city's costs — which categories run high or low — rather than
+             just the headline total, so two equally pricey cities can still be very different.</p>
+        </div>
+
+        <div class="card doc-section">
+          <h3>6 · The per-city overview</h3>
+          <p>Each city gets a short written summary grounded in its real numbers. When an
+             Anthropic API key is configured, these are written by <b>Claude (Haiku)</b>;
+             otherwise a deterministic, data-driven template produces the same facts so the app
+             works fully offline. Either way they are generated once and cached, then served
+             instantly.</p>
+        </div>
+
+        <div class="card doc-section">
+          <h3>7 · The world map</h3>
+          <p>All 545 cities were geocoded by joining the dataset to two open references
+             (SimpleMaps and GeoNames) — a 100% match. The interactive map plots only these
+             cities, each dot coloured by total cost (teal → rust). Zoom, pan, hover for a
+             tooltip, and click to load a city. The map, the dropdown and the similar-cities
+             list all stay in sync.</p>
+        </div>
+
+        <div class="card doc-section">
+          <h3>8 · Reading each tab</h3>
+          <ul class="doc-list">
+            <li><b>Explore a city</b> — pick a city (map or dropdown) to see its overview,
+                metrics, SHAP driver bars and nearest neighbours.</li>
+            <li><b>Compare</b> — set two cities and see, category by category, exactly where the
+                cost gap comes from.</li>
+            <li><b>Global insights</b> — the factors that drive cost worldwide, a regional
+                summary, and the model's accuracy.</li>
+            <li><b>Custom profile</b> — move sliders to invent a city and watch the model and its
+                SHAP explanation react.</li>
+          </ul>
+        </div>
+
+        <div class="card doc-section doc-caveat">
+          <h3>9 · Honest limitations</h3>
+          <ul class="doc-list">
+            <li>Numbeo is crowd-sourced; coverage and accuracy vary by city and drift over time.
+                The snapshot is a point-in-time reading.</li>
+            <li>SHAP explains the <em>model</em>, which captures <em>associations</em> — these are
+                not controlled causal effects.</li>
+            <li>The high R² is partly structural: the target (total cost) is itself a basket of
+                the input categories, so the interesting output is the <em>decomposition</em>,
+                not the raw accuracy.</li>
+            <li>A single city index hides neighbourhood-level inequality; purchasing power
+                mitigates but does not remove this.</li>
+          </ul>
+        </div>
+
+        <div class="card doc-section">
+          <h3>Stack</h3>
+          <p class="muted">FastAPI · XGBoost · SHAP · scikit-learn · pandas · Leaflet ·
+             Anthropic (optional) — data from Numbeo, geocoding from SimpleMaps &amp; GeoNames.
+             Full methodology and formulas in
+             <a href="https://github.com/tejassinghbhati/COLE/blob/main/docs/HOW_IT_WORKS.md"
+                target="_blank" rel="noopener">HOW_IT_WORKS.md</a>.</p>
+        </div>
+      </article>
     </section>
   </main>
 
