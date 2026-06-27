@@ -125,10 +125,10 @@ button.primary:hover { background: var(--accent-ink); }
   padding: 20px 24px; margin-bottom: 16px; box-shadow: var(--shadow);
 }
 .overview-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-.overview-head h3 { font-family: var(--serif); font-size: 17px; margin: 0; font-weight: 600; }
+.overview-head h3 { font-family: var(--serif); font-size: 15px; margin: 0; font-weight: 600; }
 .overview p {
-  font-family: var(--serif); font-size: 19.5px; line-height: 1.7; color: var(--ink);
-  margin: 0; max-width: 88ch; font-weight: 500;
+  font-family: var(--serif); font-size: 16.5px; line-height: 1.6; color: var(--ink);
+  margin: 0; max-width: 86ch; font-weight: 500;
 }
 
 /* ---- metrics ----------------------------------------------------------- */

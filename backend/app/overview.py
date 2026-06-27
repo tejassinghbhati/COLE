@@ -56,42 +56,88 @@ def _x(mult: float) -> str:
     return f"{mult:.2f}×"
 
 
+def _level(mult: float) -> str:
+    """Describe a multiplier vs the Delhi baseline in words."""
+    if mult >= 4:
+        return "far above"
+    if mult >= 2:
+        return "well above"
+    if mult >= 1.25:
+        return "above"
+    if mult >= 0.9:
+        return "close to"
+    if mult >= 0.6:
+        return "below"
+    return "well below"
+
+
+_WORD = {"rent": "housing", "groceries": "groceries", "restaurants": "dining out"}
+
+
 # ---- deterministic template ------------------------------------------------
 def template_overview(row: dict) -> str:
     f = facts(row)
     city, country = f["city"], f["country"]
 
+    cats = f["cats"]
+
     if city == "Delhi" and country == "India":
-        return ("New Delhi is the baseline for this analysis: every index is set to 100 "
-                "here, so each other city is described relative to it. Rent, groceries and "
-                "dining in Delhi anchor the scale at which all 545 cities are compared.")
+        return ("New Delhi is the baseline for this entire analysis: every index — rent, "
+                "groceries, dining out and the overall total — is fixed at 100 here, and all "
+                "545 other cities are expressed relative to it. That makes Delhi a natural "
+                "anchor for South Asia, where living costs sit well below most of the wealthy "
+                "world. A city scoring 300, for example, is roughly three times as expensive "
+                "as Delhi, while one scoring 60 is around 40% cheaper. Local purchasing power "
+                "is likewise pinned at 100, serving as the yardstick against which every other "
+                "city's wages are measured — so figures above 100 elsewhere mean salaries "
+                "stretch further than they do here, and figures below 100 mean they stretch "
+                "less.")
 
     r = f["ratio"]
-    if r >= 1.15:
-        head = f"{city}, {country} is markedly more expensive than New Delhi — overall about {_x(r)} the total cost of living"
+    rent_m, groc_m, rest_m = cats["rent"] / 100.0, cats["groceries"] / 100.0, cats["restaurants"] / 100.0
+
+    # 1. Headline — overall position and region.
+    if r >= 2.5:
+        head = (f"{city}, {country} is one of the more expensive cities in the dataset: its "
+                f"total cost of living is about {_x(r)} that of New Delhi")
+    elif r >= 1.15:
+        head = (f"{city}, {country} is markedly more expensive than New Delhi, with a total "
+                f"cost of living roughly {_x(r)} Delhi's")
     elif r >= 0.9:
-        head = f"{city}, {country} sits close to New Delhi on overall cost — roughly {_x(r)} the total"
+        head = (f"{city}, {country} sits close to New Delhi on overall cost, at about {_x(r)} "
+                f"the total")
     else:
-        head = f"{city}, {country} is cheaper than New Delhi overall — about {_x(r)} the total cost of living"
+        head = (f"{city}, {country} is cheaper than New Delhi overall — around {_x(r)} the "
+                f"total cost of living")
+    head += f", which places it in the {f['region']} region."
 
-    drv = f["top_driver"]
-    drv_mult = f["cats"][drv] / 100.0
-    driver_word = {"rent": "housing", "groceries": "groceries", "restaurants": "eating out"}[drv]
-    mid = (f"its biggest cost pressure is {driver_word}, running about {_x(drv_mult)} "
-           f"New Delhi's level")
+    # 2. Housing — usually the dominant line item.
+    house = (f"Housing is {_level(rent_m)} the Delhi baseline, with rents running about "
+             f"{_x(rent_m)} those in New Delhi.")
 
+    # 3. Everyday spending.
+    daily = (f"Day-to-day costs follow a similar pattern: groceries are about {_x(groc_m)} and "
+             f"eating out about {_x(rest_m)} Delhi's level.")
+
+    # 4. Which category bites most / least.
+    drv, low = f["top_driver"], min(cats, key=cats.get)
+    driver = (f"The single biggest pressure on a household budget here is {_WORD[drv]}, while "
+              f"{_WORD[low]} is comparatively the gentlest of the three categories.")
+
+    # 5. Affordability — wages vs prices.
     pp = f["pp_ratio"]
     if pp >= 1.1:
-        tail = (f"Local salaries stretch further too — purchasing power is about {_x(pp)} "
-                f"Delhi's, softening the higher prices.")
+        power = (f"Crucially, local salaries stretch further than in Delhi — purchasing power "
+                 f"is about {_x(pp)} the baseline — so these higher prices are partly offset by "
+                 f"higher pay.")
     elif pp >= 0.9:
-        tail = (f"Local purchasing power is similar to Delhi's (about {_x(pp)}), so prices "
-                f"and wages are broadly in step.")
+        power = (f"Local purchasing power is broadly in line with Delhi's (about {_x(pp)}), so "
+                 f"wages and prices move roughly in step.")
     else:
-        tail = (f"Local purchasing power is lower than Delhi's (about {_x(pp)}), so those "
-                f"prices bite harder on local wages.")
+        power = (f"Local purchasing power, however, is lower than Delhi's (about {_x(pp)}), "
+                 f"which means those prices bite harder on what residents actually earn.")
 
-    return f"{head}, in the {f['region']} region. Here {mid}. {tail}"
+    return f"{head} {house} {daily} {driver} {power}"
 
 
 # ---- LLM backend -----------------------------------------------------------
@@ -109,10 +155,14 @@ def _llm_client():
 def llm_overview(row: dict, client) -> str:
     f = facts(row)
     prompt = (
-        "Write a concise, neutral, factual 2-3 sentence overview of this city's cost of "
-        "living for a data dashboard. All numbers are indices where New Delhi = 100 "
-        "(higher = more expensive; purchasing power higher = local salaries stretch "
-        "further). Do not invent facts beyond the data. Do not use bullet points.\n\n"
+        "Write a neutral, factual overview of this city's cost of living for a data "
+        "dashboard — a single paragraph of about 5-6 sentences. Cover: how the overall cost "
+        "compares to New Delhi; housing/rent specifically; groceries and dining out; which "
+        "category is the biggest pressure and which is the gentlest; and what local "
+        "purchasing power implies about whether wages keep up with prices. All numbers are "
+        "indices where New Delhi = 100 (higher = more expensive; purchasing power higher = "
+        "local salaries stretch further). Do not invent facts beyond the data given. Do not "
+        "use bullet points or headings — flowing prose only.\n\n"
         f"City: {f['city']}, {f['country']} ({f['region']})\n"
         f"Total cost of living index: {f['total']:.0f} (New Delhi = 100)\n"
         f"Rent index: {f['cats']['rent']:.0f}\n"
@@ -121,7 +171,7 @@ def llm_overview(row: dict, client) -> str:
         f"Local purchasing power index: {f['pp']:.0f} (New Delhi = 100)\n"
     )
     msg = client.messages.create(
-        model=LLM_MODEL, max_tokens=200, temperature=0.4,
+        model=LLM_MODEL, max_tokens=500, temperature=0.5,
         messages=[{"role": "user", "content": prompt}],
     )
     return "".join(b.text for b in msg.content if getattr(b, "type", None) == "text").strip()
