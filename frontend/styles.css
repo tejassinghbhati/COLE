@@ -26,11 +26,13 @@ body {
   display: flex; align-items: center; justify-content: space-between;
   padding: 20px 32px; border-bottom: 1px solid var(--border);
 }
-.brand { display: flex; align-items: center; gap: 16px; }
+.brand { display: flex; align-items: center; gap: 14px; }
 .logo {
-  font-size: 34px; line-height: 1; color: var(--accent);
-  filter: drop-shadow(0 0 12px rgba(79,156,255,.5));
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; color: var(--muted);
+  background: var(--panel); border: 1px solid var(--border); border-radius: 9px;
 }
+.logo svg { display: block; }
 .topbar h1 { font-size: 20px; margin: 0; font-weight: 800; letter-spacing: -.02em; }
 .tagline { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
 .tagline em { color: var(--accent-2); font-style: normal; }
@@ -135,6 +137,31 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 .slider-form .sval { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
 .form-row { display: flex; align-items: flex-end; gap: 14px; margin-top: 18px; }
 .form-row label { font-size: 13px; color: var(--muted); display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
+
+/* "Understanding this view" explainer (one per tab) */
+.explainer {
+  margin-top: 26px; background: var(--panel);
+  border: 1px solid var(--border); border-left: 3px solid var(--accent);
+  border-radius: var(--radius); padding: 24px 26px;
+}
+.explainer h2 {
+  margin: 0 0 8px; font-size: 16px; font-weight: 700; letter-spacing: -.01em;
+}
+.explainer > p {
+  color: var(--muted); font-size: 14px; line-height: 1.65; margin: 0 0 20px; max-width: 78ch;
+}
+.explainer > p em { color: var(--accent-2); font-style: normal; }
+.explainer-steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px 30px; }
+@media (max-width: 760px) { .explainer-steps { grid-template-columns: 1fr; } }
+.estep { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+.estep .n {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--panel-2);
+  border: 1px solid var(--border); color: var(--accent); font-size: 13px; font-weight: 700;
+  display: grid; place-items: center;
+}
+.estep p { margin: 0; font-size: 13.5px; line-height: 1.6; color: var(--muted); }
+.estep p b { color: var(--text); font-weight: 600; }
+.estep p em { color: var(--text); font-style: italic; }
 
 footer {
   display: flex; justify-content: space-between; padding: 18px 32px; border-top: 1px solid var(--border);

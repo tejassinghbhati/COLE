@@ -11,7 +11,15 @@
 <body>
   <header class="topbar">
     <div class="brand">
-      <span class="logo">◧</span>
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor"
+             stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3v18h18" />
+          <rect x="6.5" y="12.5" width="2.8" height="5.5" />
+          <rect x="11.6" y="8.5" width="2.8" height="9.5" />
+          <rect x="16.7" y="5" width="2.8" height="13" />
+        </svg>
+      </span>
       <div>
         <h1>Cost of Living Explainer</h1>
         <p class="tagline">Understanding <em>why</em> places are expensive — with explainable ML</p>
@@ -67,6 +75,31 @@
           <div id="similarList" class="similar-list"></div>
         </div>
       </div>
+
+      <section class="explainer">
+        <h2>Understanding this view</h2>
+        <p>This page estimates how expensive a city is and — more importantly — explains
+           <em>why</em>. The model never just reports a number; it shows which everyday costs
+           are responsible for it.</p>
+        <div class="explainer-steps">
+          <div class="estep"><span class="n">1</span>
+            <p><b>The cost-of-living index.</b> A single score on a scale where New York
+               City = 100. An index of 130 means living there costs about 30% more than
+               NYC; an index of 70 means about 30% less.</p></div>
+          <div class="estep"><span class="n">2</span>
+            <p><b>Income &amp; affordability burden.</b> A high price tag is only painful if
+               wages can't cover it. The burden divides cost by local income — around 100 is
+               a typical balance, while higher numbers mean pay is not keeping up with prices.</p></div>
+          <div class="estep"><span class="n">3</span>
+            <p><b>The driver bars.</b> Each bar is one spending category. A red bar pushes
+               this city <em>above</em> the average city; a blue bar pulls it <em>below</em>.
+               The longer the bar, the bigger that category's effect on the final score.</p></div>
+          <div class="estep"><span class="n">4</span>
+            <p><b>Similar cities.</b> Found by matching the <em>shape</em> of a city's
+               costs — which categories run high or low — not just the total. Two equally
+               pricey cities can still be expensive for very different reasons.</p></div>
+        </div>
+      </section>
     </section>
 
     <!-- COMPARE ----------------------------------------------------------->
@@ -82,6 +115,26 @@
         <p class="hint">Each bar: how much higher (right) or lower (left) City A is than City B, per category.</p>
         <div id="cmpChart" class="diverging-chart"></div>
       </div>
+
+      <section class="explainer">
+        <h2>Understanding this view</h2>
+        <p>Two cities can land on a similar overall index for completely different reasons —
+           one drowning in rent, the other in healthcare bills. This page pulls those reasons
+           apart, category by category.</p>
+        <div class="explainer-steps">
+          <div class="estep"><span class="n">1</span>
+            <p><b>The two scores.</b> Each card shows a city's predicted cost-of-living index
+               and its local monthly income, side by side.</p></div>
+          <div class="estep"><span class="n">2</span>
+            <p><b>The diverging bars.</b> Every bar is one cost category. A bar to the
+               <em>right</em> means City A is more expensive there; to the <em>left</em> means
+               City B is. The longest bars are where the real gap lives.</p></div>
+          <div class="estep"><span class="n">3</span>
+            <p><b>Why it's useful.</b> Instead of a vague "A is pricier than B", you see the
+               exact mix — maybe A's housing is far higher but B's transport and childcare
+               claw some of it back.</p></div>
+        </div>
+      </section>
     </section>
 
     <!-- INSIGHTS ---------------------------------------------------------->
@@ -102,6 +155,26 @@
         <div id="modelMetrics" class="metrics-row"></div>
         <p class="hint">XGBoost regressor · SHAP TreeExplainer · standardized k-NN for similarity.</p>
       </div>
+
+      <section class="explainer">
+        <h2>Understanding this view</h2>
+        <p>The other tabs look at single cities; this one zooms out to the patterns hidden
+           across all of them — and shows how trustworthy the model is.</p>
+        <div class="explainer-steps">
+          <div class="estep"><span class="n">1</span>
+            <p><b>Global cost drivers.</b> Averaged over every city, which categories move
+               the index the most. It's the typical <em>size</em> of each factor's effect, so
+               the longest bar is the lever that matters most worldwide — usually housing.</p></div>
+          <div class="estep"><span class="n">2</span>
+            <p><b>Regions table.</b> Average cost, income and affordability burden by world
+               region. It reveals that "most expensive" and "hardest to afford" are not the
+               same list — high wages can offset high prices.</p></div>
+          <div class="estep"><span class="n">3</span>
+            <p><b>Model card.</b> How well the model does on cities it never saw while
+               learning. <b>R²</b> is the share of variation it explains (1.0 = perfect);
+               <b>MAE</b> is the average miss, in index points.</p></div>
+        </div>
+      </section>
     </section>
 
     <!-- PREDICT ----------------------------------------------------------->
@@ -125,6 +198,25 @@
           <div id="predDrivers" class="driver-chart"></div>
         </div>
       </div>
+
+      <section class="explainer">
+        <h2>Understanding this view</h2>
+        <p>A sandbox for building a hypothetical place. Set the costs yourself and watch the
+           model react — the best way to <em>feel</em> how much each factor really matters.</p>
+        <div class="explainer-steps">
+          <div class="estep"><span class="n">1</span>
+            <p><b>The sliders.</b> Dial each cost category, the local income and the density
+               to any values you like, then choose a region.</p></div>
+          <div class="estep"><span class="n">2</span>
+            <p><b>Predict &amp; explain.</b> The model estimates the overall index for your
+               invented city and breaks down which of your settings pushed the score up or
+               down — the same SHAP explanation used for real cities.</p></div>
+          <div class="estep"><span class="n">3</span>
+            <p><b>What it teaches.</b> Move one slider at a time. You'll see that raising
+               housing shifts the index far more than raising utilities — a direct, hands-on
+               view of which costs dominate.</p></div>
+        </div>
+      </section>
     </section>
   </main>
 
