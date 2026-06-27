@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cost of Living Explainer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">◧</span>
+      <div>
+        <h1>Cost of Living Explainer</h1>
+        <p class="tagline">Understanding <em>why</em> places are expensive — with explainable ML</p>
+      </div>
+    </div>
+    <div class="model-badge" id="modelBadge">model: …</div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="explore">Explore a city</button>
+    <button class="tab" data-tab="compare">Compare</button>
+    <button class="tab" data-tab="insights">Global insights</button>
+    <button class="tab" data-tab="predict">Custom profile</button>
+  </nav>
+
+  <main>
+    <!-- EXPLORE ----------------------------------------------------------->
+    <section id="explore" class="panel active">
+      <div class="controls">
+        <label>City
+          <select id="citySelect"></select>
+        </label>
+        <p class="hint">Pick a city to see its predicted cost index and the SHAP breakdown of what drives it.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card metric">
+          <div class="metric-label">Predicted cost-of-living index</div>
+          <div class="metric-value" id="cityIndex">—</div>
+          <div class="metric-sub" id="cityIndexSub">NYC = 100 baseline</div>
+        </div>
+        <div class="card metric">
+          <div class="metric-label">Median income (net / mo)</div>
+          <div class="metric-value" id="cityIncome">—</div>
+          <div class="metric-sub">local take-home</div>
+        </div>
+        <div class="card metric">
+          <div class="metric-label">Affordability burden</div>
+          <div class="metric-value" id="cityBurden">—</div>
+          <div class="metric-sub" id="cityBurdenSub">cost vs. wages</div>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>What drives this city's cost <span class="tag">SHAP</span></h3>
+          <p class="hint">Bars show each factor's contribution above (red) or below (blue) the average city.</p>
+          <div id="driverChart" class="driver-chart"></div>
+        </div>
+        <div class="card">
+          <h3>Most similar cities</h3>
+          <p class="hint">Nearest neighbours by cost <em>structure</em>, not just total price.</p>
+          <div id="similarList" class="similar-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARE ----------------------------------------------------------->
+    <section id="compare" class="panel">
+      <div class="controls compare-controls">
+        <label>City A <select id="cmpA"></select></label>
+        <span class="vs">vs</span>
+        <label>City B <select id="cmpB"></select></label>
+      </div>
+      <div class="grid two" id="cmpHeads"></div>
+      <div class="card">
+        <h3>Where the cost gap comes from</h3>
+        <p class="hint">Each bar: how much higher (right) or lower (left) City A is than City B, per category.</p>
+        <div id="cmpChart" class="diverging-chart"></div>
+      </div>
+    </section>
+
+    <!-- INSIGHTS ---------------------------------------------------------->
+    <section id="insights" class="panel">
+      <div class="grid two">
+        <div class="card">
+          <h3>What drives cost of living — globally</h3>
+          <p class="hint">Mean |SHAP| across all cities: the factors that move the index most.</p>
+          <div id="globalChart" class="driver-chart"></div>
+        </div>
+        <div class="card">
+          <h3>Regions by cost &amp; affordability</h3>
+          <div id="regionTable"></div>
+        </div>
+      </div>
+      <div class="card model-card">
+        <h3>Model</h3>
+        <div id="modelMetrics" class="metrics-row"></div>
+        <p class="hint">XGBoost regressor · SHAP TreeExplainer · standardized k-NN for similarity.</p>
+      </div>
+    </section>
+
+    <!-- PREDICT ----------------------------------------------------------->
+    <section id="predict" class="panel">
+      <div class="grid two">
+        <div class="card">
+          <h3>Build a custom cost profile</h3>
+          <p class="hint">Move the sliders to model a hypothetical place, then see the predicted index and its drivers.</p>
+          <form id="predictForm" class="slider-form"></form>
+          <div class="form-row">
+            <label>Region <select id="predRegion"></select></label>
+            <button type="button" id="predictBtn" class="primary">Predict &amp; explain</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card metric inset">
+            <div class="metric-label">Predicted index</div>
+            <div class="metric-value" id="predIndex">—</div>
+          </div>
+          <h3>Drivers</h3>
+          <div id="predDrivers" class="driver-chart"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Cost of Living Explainer — an ML tool for understanding socioeconomic problems.</span>
+    <span class="muted">Synthetic demo data · swap in Numbeo/BLS to go live.</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
