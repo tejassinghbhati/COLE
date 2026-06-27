@@ -118,6 +118,32 @@ button.primary:hover { background: var(--accent-ink); }
   border: 1px solid var(--line); padding: 2px 7px; border-radius: 5px; font-weight: 700;
   letter-spacing: .07em; text-transform: uppercase; }
 
+/* ---- map --------------------------------------------------------------- */
+.map-card { padding: 16px 16px 12px; }
+.map-head { display: flex; align-items: baseline; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; margin: 4px 4px 12px; }
+.map-head h3 { margin: 0; }
+.map-head .hint { margin: 0; }
+#map {
+  height: 420px; width: 100%; border-radius: 7px; border: 1px solid var(--line);
+  background: var(--surface-2); z-index: 0;
+}
+.map-legend { display: flex; align-items: center; gap: 10px; justify-content: center;
+  margin-top: 10px; font-size: 11px; color: var(--ink-soft); }
+.legend-bar { width: 160px; height: 9px; border-radius: 5px; border: 1px solid var(--line);
+  background: linear-gradient(90deg, #2f8f86, #d8b25a, #b0532e); }
+/* Leaflet chrome tuned to the paper theme */
+.leaflet-container { font: inherit; background: var(--surface-2); }
+.leaflet-bar a, .leaflet-bar a:hover {
+  background: var(--surface); color: var(--ink); border-bottom-color: var(--line); }
+.leaflet-popup-content-wrapper, .leaflet-tooltip {
+  background: var(--surface); color: var(--ink); border: 1px solid var(--line);
+  box-shadow: var(--shadow); font-size: 12px; }
+.leaflet-tooltip { border-radius: 6px; font-weight: 500; }
+.leaflet-tooltip-top:before { border-top-color: var(--line); }
+.city-tip b { font-weight: 700; }
+.city-tip span { font-family: var(--mono); color: var(--accent-ink); }
+
 /* ---- overview card ----------------------------------------------------- */
 .overview {
   background: var(--surface); border: 1px solid var(--line);

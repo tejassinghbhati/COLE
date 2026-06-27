@@ -4,6 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cost of Living Explainer</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -39,6 +43,19 @@
   <main>
     <!-- EXPLORE ----------------------------------------------------------->
     <section id="explore" class="panel active">
+      <div class="card map-card">
+        <div class="map-head">
+          <h3>Select a city on the map</h3>
+          <span class="hint">Zoom and pan the world; each dot is one of the 545 cities — click to explore it.</span>
+        </div>
+        <div id="map"></div>
+        <div class="map-legend">
+          <span>Cheaper (near New Delhi)</span>
+          <span class="legend-bar"></span>
+          <span>More expensive</span>
+        </div>
+      </div>
+
       <div class="controls">
         <label>City
           <select id="citySelect"></select>

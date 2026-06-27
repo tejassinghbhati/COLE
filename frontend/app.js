@@ -1,6 +1,7 @@
 // Cost of Living Explainer — frontend logic (vanilla JS). New Delhi = 100 baseline.
 const API = "/api";
 let STATE = { cities: [], regions: [] };
+let MAP = null, MARKERS = {}, SELECTED_ID = null;
 
 const $ = (s) => document.querySelector(s);
 const fmt = (n) => Number(n).toLocaleString(undefined, { maximumFractionDigits: 0 });
@@ -65,7 +66,7 @@ async function loadCity(id) {
       <div class="idx">${s.total_cost_index.toFixed(0)}</div>
     </div>`).join("");
   document.querySelectorAll("#similarList .similar-item").forEach((el) =>
-    el.addEventListener("click", () => { $("#citySelect").value = el.dataset.id; loadCity(el.dataset.id); }));
+    el.addEventListener("click", () => selectCity(el.dataset.id, true)));
 }
 
 // ---- COMPARE --------------------------------------------------------------
@@ -151,6 +152,59 @@ async function runPredict() {
   renderDrivers($("#predDrivers"), d.drivers);
 }
 
+// ---- MAP ------------------------------------------------------------------
+function costColor(idx) {
+  const stops = [[0, [47, 143, 134]], [0.5, [216, 178, 90]], [1, [176, 83, 46]]];
+  const t = Math.max(0, Math.min(1, (idx - 100) / (450 - 100)));
+  let a = stops[0], b = stops[stops.length - 1];
+  for (let i = 0; i < stops.length - 1; i++)
+    if (t >= stops[i][0] && t <= stops[i + 1][0]) { a = stops[i]; b = stops[i + 1]; break; }
+  const lt = (t - a[0]) / ((b[0] - a[0]) || 1);
+  const c = a[1].map((v, i) => Math.round(v + (b[1][i] - v) * lt));
+  return `rgb(${c[0]},${c[1]},${c[2]})`;
+}
+
+function initMap(cities) {
+  MAP = L.map("map", { worldCopyJump: true, minZoom: 2, maxZoom: 12, scrollWheelZoom: true })
+    .setView([28, 12], 2);
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; OpenStreetMap, &copy; CARTO', subdomains: "abcd", maxZoom: 19,
+  }).addTo(MAP);
+
+  cities.forEach((c) => {
+    if (c.lat == null || c.lng == null) return;
+    const m = L.circleMarker([c.lat, c.lng], {
+      radius: 5, color: "#2a2e2a", weight: 1,
+      fillColor: costColor(c.total_cost_index), fillOpacity: 0.85,
+    });
+    m.bindTooltip(
+      `<span class="city-tip"><b>${c.city}</b>, ${c.country} · cost <span>${c.total_cost_index.toFixed(0)}</span></span>`,
+      { direction: "top", offset: [0, -4] });
+    m.on("click", () => selectCity(c.id, false));
+    m.addTo(MAP);
+    MARKERS[c.id] = m;
+  });
+}
+
+function highlightMarker(id, pan) {
+  if (SELECTED_ID && MARKERS[SELECTED_ID])
+    MARKERS[SELECTED_ID].setStyle({ radius: 5, color: "#2a2e2a", weight: 1 });
+  const m = MARKERS[id];
+  if (m) {
+    m.setStyle({ radius: 8, color: "#1d6f6a", weight: 2.5 });
+    m.bringToFront();
+    if (pan && MAP) MAP.panTo(m.getLatLng(), { animate: true });
+  }
+  SELECTED_ID = id;
+}
+
+// Single entry point for choosing a city (map, dropdown, similar list all use it).
+async function selectCity(id, pan = false) {
+  $("#citySelect").value = id;
+  highlightMarker(id, pan);
+  await loadCity(id);
+}
+
 // ---- init -----------------------------------------------------------------
 function cityOptions(cities) {
   return cities.map((c) => `<option value="${c.id}">${c.city}, ${c.country}</option>`).join("");
@@ -182,13 +236,14 @@ async function init() {
   $("#cmpB").value = find("Zurich");
   fillRegions($("#predRegion"), data.regions, "South Asia");
 
-  $("#citySelect").addEventListener("change", (e) => loadCity(e.target.value));
+  $("#citySelect").addEventListener("change", (e) => selectCity(e.target.value, true));
   $("#cmpA").addEventListener("change", loadCompare);
   $("#cmpB").addEventListener("change", loadCompare);
   $("#predictBtn").addEventListener("click", runPredict);
 
   buildSliders();
-  await loadCity($("#citySelect").value);
+  initMap(data.cities);
+  await selectCity($("#citySelect").value, true);
   await loadCompare();
 }
 
