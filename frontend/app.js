@@ -1,9 +1,10 @@
-// Cost of Living Explainer — frontend logic (vanilla JS).
+// Cost of Living Explainer — frontend logic (vanilla JS). New Delhi = 100 baseline.
 const API = "/api";
-let STATE = { cities: [], regions: [], labels: {} };
+let STATE = { cities: [], regions: [] };
 
-const $ = (sel) => document.querySelector(sel);
-const fmtMoney = (n) => "$" + Math.round(n).toLocaleString();
+const $ = (s) => document.querySelector(s);
+const fmt = (n) => Number(n).toLocaleString(undefined, { maximumFractionDigits: 0 });
+const mult = (v) => (v / 100 >= 1 ? (v / 100).toFixed(1) + "×" : (v / 100).toFixed(2) + "×");
 
 async function jget(url) {
   const r = await fetch(url);
@@ -11,10 +12,7 @@ async function jget(url) {
   return r.json();
 }
 async function jpost(url, body) {
-  const r = await fetch(url, {
-    method: "POST", headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
+  const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
   if (!r.ok) throw new Error((await r.json().catch(() => ({}))).detail || r.statusText);
   return r.json();
 }
@@ -30,50 +28,44 @@ document.querySelectorAll(".tab").forEach((t) => {
   });
 });
 
-// ---- driver bar chart (SHAP) ---------------------------------------------
+// ---- driver bars ----------------------------------------------------------
 function renderDrivers(container, drivers, maxAbs) {
   const max = maxAbs || Math.max(...drivers.map((d) => Math.abs(d.contribution)), 1);
   container.innerHTML = drivers.map((d) => {
     const pct = Math.min(100, (Math.abs(d.contribution) / max) * 50);
     const pos = d.contribution >= 0;
-    const sign = pos ? "+" : "";
     return `<div class="driver-row">
       <div class="driver-name">${d.label}</div>
       <div class="driver-track"><div class="driver-mid"></div>
-        <div class="driver-fill ${pos ? "pos" : "neg"}" style="width:${pct}%"></div>
-      </div>
-      <div class="driver-val ${pos ? "pos" : "neg"}">${sign}${d.contribution.toFixed(1)}</div>
+        <div class="driver-fill ${pos ? "pos" : "neg"}" style="width:${pct}%"></div></div>
+      <div class="driver-val ${pos ? "pos" : "neg"}">${pos ? "+" : ""}${d.contribution.toFixed(1)}</div>
     </div>`;
   }).join("");
 }
 
 // ---- EXPLORE --------------------------------------------------------------
-function burdenLabel(b) {
-  if (b >= 130) return "very high";
-  if (b >= 105) return "high";
-  if (b >= 85) return "moderate";
-  return "comfortable";
-}
+async function loadCity(id) {
+  const d = await jget(`${API}/city?id=${encodeURIComponent(id)}`);
+  $("#ovTitle").textContent = `${d.city}, ${d.country}`;
+  $("#cityOverview").textContent = d.overview;
 
-async function loadCity(name) {
-  const d = await jget(`${API}/city/${encodeURIComponent(name)}`);
-  $("#cityIndex").textContent = d.explanation.predicted_index.toFixed(1);
-  $("#cityIndexSub").textContent = `actual ${d.actual_index.toFixed(1)} · ${d.region}`;
-  $("#cityIncome").textContent = fmtMoney(d.median_income_usd);
-  $("#cityBurden").textContent = d.affordability_burden.toFixed(0);
-  $("#cityBurdenSub").textContent = `${burdenLabel(d.affordability_burden)} — cost vs wages`;
+  $("#cityIndex").textContent = d.total_cost_index.toFixed(0);
+  $("#cityIndexSub").innerHTML = `<b>${mult(d.total_cost_index)}</b> New Delhi · ${d.region}`;
+  $("#cityRent").textContent = d.rent_index.toFixed(0);
+  $("#cityRentSub").innerHTML = `<b>${mult(d.rent_index)}</b> New Delhi`;
+  $("#cityPP").textContent = d.purchasing_power_index.toFixed(0);
+  const ppCool = d.purchasing_power_index >= 100;
+  $("#cityPPSub").innerHTML = `<b class="${ppCool ? "cool" : ""}">${mult(d.purchasing_power_index)}</b> New Delhi — wages stretch ${ppCool ? "further" : "less"}`;
+
   renderDrivers($("#driverChart"), d.explanation.drivers);
 
   $("#similarList").innerHTML = d.similar_cities.map((s) => `
-    <div class="similar-item" data-city="${s.city}">
-      <div><div class="name">${s.city}</div><div class="region">${s.region}</div></div>
-      <div class="idx">${s.cost_of_living_index.toFixed(0)}</div>
+    <div class="similar-item" data-id="${s.city}|${s.country}">
+      <div><div class="name">${s.city}</div><div class="region">${s.country} · ${s.region}</div></div>
+      <div class="idx">${s.total_cost_index.toFixed(0)}</div>
     </div>`).join("");
   document.querySelectorAll("#similarList .similar-item").forEach((el) =>
-    el.addEventListener("click", () => {
-      $("#citySelect").value = el.dataset.city;
-      loadCity(el.dataset.city);
-    }));
+    el.addEventListener("click", () => { $("#citySelect").value = el.dataset.id; loadCity(el.dataset.id); }));
 }
 
 // ---- COMPARE --------------------------------------------------------------
@@ -83,9 +75,9 @@ async function loadCompare() {
   const d = await jget(`${API}/compare?a=${encodeURIComponent(a)}&b=${encodeURIComponent(b)}`);
   $("#cmpHeads").innerHTML = [d.a, d.b].map((c, i) => `
     <div class="card metric">
-      <div class="metric-label">City ${i === 0 ? "A" : "B"} · ${c.city}</div>
-      <div class="metric-value">${c.index.toFixed(1)}</div>
-      <div class="metric-sub">income ${fmtMoney(c.income)}/mo</div>
+      <div class="metric-label">City ${i === 0 ? "A" : "B"} · ${c.city}, ${c.country}</div>
+      <div class="metric-value">${c.index.toFixed(0)}</div>
+      <div class="metric-sub">purchasing power <b class="${c.purchasing_power >= 100 ? "cool" : ""}">${c.purchasing_power.toFixed(0)}</b></div>
     </div>`).join("");
 
   const max = Math.max(...d.category_gaps.map((g) => Math.abs(g.gap)), 1);
@@ -96,7 +88,7 @@ async function loadCompare() {
       <div class="driver-name">${g.label}</div>
       <div class="dv-track"><div class="dv-mid"></div>
         <div class="dv-fill ${pos ? "pos" : "neg"}" style="width:${pct}%"></div></div>
-      <div class="driver-val">${pos ? "+" : ""}${g.gap.toFixed(0)}</div>
+      <div class="driver-val ${pos ? "pos" : "neg"}">${pos ? "+" : ""}${g.gap.toFixed(0)}</div>
     </div>`;
   }).join("");
 }
@@ -111,45 +103,39 @@ async function loadInsights() {
     const pct = Math.min(100, (x.importance / max) * 100);
     return `<div class="driver-row">
       <div class="driver-name">${x.label}</div>
-      <div class="driver-track">
-        <div class="driver-fill pos" style="left:0;width:${pct}%"></div></div>
+      <div class="driver-track"><div class="driver-fill pos" style="left:0;width:${pct}%"></div></div>
       <div class="driver-val pos">${x.importance.toFixed(1)}</div>
     </div>`;
   }).join("");
 
   $("#regionTable").innerHTML = `<table><thead><tr>
-    <th>Region</th><th class="num">Cost idx</th><th class="num">Income</th><th class="num">Burden</th>
+    <th>Region</th><th class="num">Cost</th><th class="num">Rent</th><th class="num">Purch. power</th><th class="num">n</th>
     </tr></thead><tbody>${d.regions.map((r) => `<tr>
-      <td>${r.region}</td><td class="num">${r.avg_index.toFixed(0)}</td>
-      <td class="num">${fmtMoney(r.avg_income)}</td><td class="num">${r.avg_burden.toFixed(0)}</td>
-    </tr>`).join("")}</tbody></table>`;
+      <td>${r.region}</td><td class="num">${r.avg_total.toFixed(0)}</td>
+      <td class="num">${r.avg_rent.toFixed(0)}</td><td class="num">${r.avg_purchasing_power.toFixed(0)}</td>
+      <td class="num">${r.n}</td></tr>`).join("")}</tbody></table>`;
 
+  const m = d.metrics;
   $("#modelMetrics").innerHTML = `
-    <div class="m"><b>${d.metrics.r2}</b><span>R² (hold-out)</span></div>
-    <div class="m"><b>${d.metrics.mae}</b><span>MAE (index pts)</span></div>
-    <div class="m"><b>${d.metrics.n_train + d.metrics.n_test}</b><span>cities</span></div>`;
+    <div class="m"><b>${m.r2}</b><span>R² (hold-out)</span></div>
+    <div class="m"><b>${m.mae}</b><span>MAE (index pts)</span></div>
+    <div class="m"><b>${m.n_cities}</b><span>cities</span></div>
+    <div class="m"><b>${m.n_countries}</b><span>countries</span></div>`;
   insightsLoaded = true;
 }
 
 // ---- PREDICT --------------------------------------------------------------
 const SLIDERS = [
-  ["housing_index", "Housing & rent", 0, 250, 100],
-  ["groceries_index", "Groceries", 0, 200, 100],
-  ["transport_index", "Transport", 0, 200, 100],
-  ["utilities_index", "Utilities", 0, 200, 100],
-  ["restaurant_index", "Restaurants", 0, 200, 100],
-  ["healthcare_index", "Healthcare", 0, 200, 100],
-  ["childcare_index", "Childcare", 0, 200, 100],
-  ["median_income_usd", "Income $/mo", 300, 12000, 3000],
-  ["population_density", "Density /km²", 300, 25000, 5000],
+  ["rent_index", "Rent & housing", 0, 1500, 100, 5],
+  ["groceries_index", "Groceries", 0, 600, 100, 2],
+  ["restaurant_index", "Restaurants", 0, 600, 100, 2],
+  ["purchasing_power_index", "Local purchasing power", 0, 400, 100, 2],
 ];
-
 function buildSliders() {
-  $("#predictForm").innerHTML = SLIDERS.map(([k, lbl, lo, hi, def]) => `
+  $("#predictForm").innerHTML = SLIDERS.map(([k, lbl, lo, hi, def, step]) => `
     <div class="srow">
       <label class="sname">${lbl}</label>
-      <input type="range" id="s_${k}" min="${lo}" max="${hi}" value="${def}"
-        step="${k === "median_income_usd" ? 100 : k === "population_density" ? 100 : 1}" />
+      <input type="range" id="s_${k}" min="${lo}" max="${hi}" value="${def}" step="${step}" />
       <span class="sval" id="v_${k}">${def}</span>
     </div>`).join("");
   SLIDERS.forEach(([k]) => {
@@ -157,36 +143,44 @@ function buildSliders() {
     inp.addEventListener("input", () => { $(`#v_${k}`).textContent = inp.value; });
   });
 }
-
 async function runPredict() {
-  const body = { region: $("#predRegion").value, tourism_intensity: 0.5 };
+  const body = { region: $("#predRegion").value };
   SLIDERS.forEach(([k]) => { body[k] = parseFloat($(`#s_${k}`).value); });
   const d = await jpost(`${API}/predict`, body);
-  $("#predIndex").textContent = d.predicted_index.toFixed(1);
+  $("#predIndex").textContent = d.predicted_index.toFixed(0);
   renderDrivers($("#predDrivers"), d.drivers);
 }
 
 // ---- init -----------------------------------------------------------------
-function fillSelect(sel, values, selected) {
-  sel.innerHTML = values.map((v) => `<option ${v === selected ? "selected" : ""}>${v}</option>`).join("");
+function cityOptions(cities) {
+  return cities.map((c) => `<option value="${c.id}">${c.city}, ${c.country}</option>`).join("");
+}
+function fillRegions(sel, regions, selected) {
+  sel.innerHTML = regions.map((r) => `<option ${r === selected ? "selected" : ""}>${r}</option>`).join("");
 }
 
 async function init() {
   try {
     const h = await jget(`${API}/health`);
-    $("#modelBadge").textContent = h.model_loaded
-      ? `model ready · R² ${h.metrics.r2}` : "model not trained — run scripts.train";
+    $("#modelBadge").innerHTML = h.model_loaded
+      ? `R² <b>${h.metrics.r2}</b> · ${h.metrics.n_cities} cities`
+      : "model not trained";
   } catch { $("#modelBadge").textContent = "API offline"; }
 
   const data = await jget(`${API}/cities`);
-  STATE.cities = data.cities.map((c) => c.city);
+  STATE.cities = data.cities;
   STATE.regions = data.regions;
-  STATE.labels = data.feature_labels;
 
-  fillSelect($("#citySelect"), STATE.cities, STATE.cities[0]);
-  fillSelect($("#cmpA"), STATE.cities, STATE.cities[0]);
-  fillSelect($("#cmpB"), STATE.cities, STATE.cities[1]);
-  fillSelect($("#predRegion"), STATE.regions, "North America");
+  const opts = cityOptions(data.cities);
+  $("#citySelect").innerHTML = opts;
+  $("#cmpA").innerHTML = opts;
+  $("#cmpB").innerHTML = opts;
+  // sensible defaults
+  const find = (name) => (data.cities.find((c) => c.city === name) || data.cities[0]).id;
+  $("#citySelect").value = find("Delhi");
+  $("#cmpA").value = find("Mumbai");
+  $("#cmpB").value = find("Zurich");
+  fillRegions($("#predRegion"), data.regions, "South Asia");
 
   $("#citySelect").addEventListener("change", (e) => loadCity(e.target.value));
   $("#cmpA").addEventListener("change", loadCompare);
@@ -194,11 +188,11 @@ async function init() {
   $("#predictBtn").addEventListener("click", runPredict);
 
   buildSliders();
-  await loadCity(STATE.cities[0]);
+  await loadCity($("#citySelect").value);
   await loadCompare();
 }
 
 init().catch((e) => {
   document.querySelector("main").insertAdjacentHTML("afterbegin",
-    `<div class="card" style="border-color:#ff6b6b">Failed to load: ${e.message}</div>`);
+    `<div class="card" style="border-color:#b0532e">Failed to load: ${e.message}</div>`);
 });

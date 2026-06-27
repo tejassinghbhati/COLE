@@ -4,8 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cost of Living Explainer</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -22,10 +20,13 @@
       </span>
       <div>
         <h1>Cost of Living Explainer</h1>
-        <p class="tagline">Understanding <em>why</em> places are expensive — with explainable ML</p>
+        <p class="tagline">Understanding <em>why</em> places are expensive — explainable ML on real Numbeo data</p>
       </div>
     </div>
-    <div class="model-badge" id="modelBadge">model: …</div>
+    <div class="chips">
+      <span class="chip accent">Baseline · <b>New Delhi = 100</b></span>
+      <span class="chip" id="modelBadge">model: …</span>
+    </div>
   </header>
 
   <nav class="tabs">
@@ -42,31 +43,39 @@
         <label>City
           <select id="citySelect"></select>
         </label>
-        <p class="hint">Pick a city to see its predicted cost index and the SHAP breakdown of what drives it.</p>
+        <p class="hint">545 real cities (Numbeo), every index expressed relative to New Delhi = 100.</p>
+      </div>
+
+      <div class="overview">
+        <div class="overview-head">
+          <h3 id="ovTitle">City overview</h3>
+          <span class="tag" id="ovTag">auto-generated</span>
+        </div>
+        <p id="cityOverview">—</p>
       </div>
 
       <div class="grid">
         <div class="card metric">
-          <div class="metric-label">Predicted cost-of-living index</div>
+          <div class="metric-label">Total cost of living</div>
           <div class="metric-value" id="cityIndex">—</div>
-          <div class="metric-sub" id="cityIndexSub">NYC = 100 baseline</div>
+          <div class="metric-sub" id="cityIndexSub">vs New Delhi = 100</div>
         </div>
         <div class="card metric">
-          <div class="metric-label">Median income (net / mo)</div>
-          <div class="metric-value" id="cityIncome">—</div>
-          <div class="metric-sub">local take-home</div>
+          <div class="metric-label">Rent &amp; housing</div>
+          <div class="metric-value" id="cityRent">—</div>
+          <div class="metric-sub" id="cityRentSub">vs New Delhi = 100</div>
         </div>
         <div class="card metric">
-          <div class="metric-label">Affordability burden</div>
-          <div class="metric-value" id="cityBurden">—</div>
-          <div class="metric-sub" id="cityBurdenSub">cost vs. wages</div>
+          <div class="metric-label">Local purchasing power</div>
+          <div class="metric-value" id="cityPP">—</div>
+          <div class="metric-sub" id="cityPPSub">how far local wages stretch</div>
         </div>
       </div>
 
       <div class="grid two">
         <div class="card">
           <h3>What drives this city's cost <span class="tag">SHAP</span></h3>
-          <p class="hint">Bars show each factor's contribution above (red) or below (blue) the average city.</p>
+          <p class="hint">Each factor's pull <b>above</b> (rust) or <b>below</b> (teal) the typical city in the dataset.</p>
           <div id="driverChart" class="driver-chart"></div>
         </div>
         <div class="card">
@@ -78,26 +87,25 @@
 
       <section class="explainer">
         <h2>Understanding this view</h2>
-        <p>This page estimates how expensive a city is and — more importantly — explains
-           <em>why</em>. The model never just reports a number; it shows which everyday costs
-           are responsible for it.</p>
+        <p>This page estimates how expensive a city is relative to <em>New Delhi</em> and
+           explains why. Every number is an index where New Delhi = 100, so a value of 300
+           means roughly three times Delhi's level.</p>
         <div class="explainer-steps">
           <div class="estep"><span class="n">1</span>
-            <p><b>The cost-of-living index.</b> A single score on a scale where New York
-               City = 100. An index of 130 means living there costs about 30% more than
-               NYC; an index of 70 means about 30% less.</p></div>
+            <p><b>The overview.</b> A short, plain-language summary written for this specific
+               city from its real numbers — overall cost, its biggest pressure, and how local
+               wages compare to Delhi.</p></div>
           <div class="estep"><span class="n">2</span>
-            <p><b>Income &amp; affordability burden.</b> A high price tag is only painful if
-               wages can't cover it. The burden divides cost by local income — around 100 is
-               a typical balance, while higher numbers mean pay is not keeping up with prices.</p></div>
+            <p><b>The metrics.</b> Total cost of living, rent &amp; housing, and local
+               purchasing power — each on the New Delhi = 100 scale. Purchasing power above 100
+               means salaries stretch further than in Delhi.</p></div>
           <div class="estep"><span class="n">3</span>
-            <p><b>The driver bars.</b> Each bar is one spending category. A red bar pushes
-               this city <em>above</em> the average city; a blue bar pulls it <em>below</em>.
-               The longer the bar, the bigger that category's effect on the final score.</p></div>
+            <p><b>The driver bars.</b> The model attributes the cost with SHAP. A rust bar
+               pushes this city <em>above</em> the typical city; a teal bar pulls it
+               <em>below</em>. Longer bar = bigger effect.</p></div>
           <div class="estep"><span class="n">4</span>
-            <p><b>Similar cities.</b> Found by matching the <em>shape</em> of a city's
-               costs — which categories run high or low — not just the total. Two equally
-               pricey cities can still be expensive for very different reasons.</p></div>
+            <p><b>Similar cities.</b> Found by matching the <em>shape</em> of a city's costs —
+               which categories run high or low — not merely the headline total.</p></div>
         </div>
       </section>
     </section>
@@ -112,27 +120,25 @@
       <div class="grid two" id="cmpHeads"></div>
       <div class="card">
         <h3>Where the cost gap comes from</h3>
-        <p class="hint">Each bar: how much higher (right) or lower (left) City A is than City B, per category.</p>
+        <p class="hint">Each bar: how much higher (right, rust) or lower (left, teal) City A is than City B, per category.</p>
         <div id="cmpChart" class="diverging-chart"></div>
       </div>
 
       <section class="explainer">
         <h2>Understanding this view</h2>
         <p>Two cities can land on a similar overall index for completely different reasons —
-           one drowning in rent, the other in healthcare bills. This page pulls those reasons
-           apart, category by category.</p>
+           one driven by rent, another by groceries. This page pulls those reasons apart.</p>
         <div class="explainer-steps">
           <div class="estep"><span class="n">1</span>
-            <p><b>The two scores.</b> Each card shows a city's predicted cost-of-living index
-               and its local monthly income, side by side.</p></div>
+            <p><b>The two scores.</b> Each city's predicted total cost (New Delhi = 100) and
+               its local purchasing power, side by side.</p></div>
           <div class="estep"><span class="n">2</span>
-            <p><b>The diverging bars.</b> Every bar is one cost category. A bar to the
-               <em>right</em> means City A is more expensive there; to the <em>left</em> means
-               City B is. The longest bars are where the real gap lives.</p></div>
+            <p><b>The diverging bars.</b> Every bar is one cost category. Right (rust) means
+               City A is pricier there; left (teal) means City B is. The longest bars are where
+               the real gap lives.</p></div>
           <div class="estep"><span class="n">3</span>
-            <p><b>Why it's useful.</b> Instead of a vague "A is pricier than B", you see the
-               exact mix — maybe A's housing is far higher but B's transport and childcare
-               claw some of it back.</p></div>
+            <p><b>Why it's useful.</b> You see the exact mix behind a comparison instead of a
+               vague "A is dearer than B".</p></div>
         </div>
       </section>
     </section>
@@ -142,37 +148,35 @@
       <div class="grid two">
         <div class="card">
           <h3>What drives cost of living — globally</h3>
-          <p class="hint">Mean |SHAP| across all cities: the factors that move the index most.</p>
+          <p class="hint">Mean |SHAP| across all 545 cities: the factors that move the index most.</p>
           <div id="globalChart" class="driver-chart"></div>
         </div>
         <div class="card">
-          <h3>Regions by cost &amp; affordability</h3>
+          <h3>Regions by cost &amp; purchasing power</h3>
           <div id="regionTable"></div>
         </div>
       </div>
       <div class="card model-card">
         <h3>Model</h3>
         <div id="modelMetrics" class="metrics-row"></div>
-        <p class="hint">XGBoost regressor · SHAP TreeExplainer · standardized k-NN for similarity.</p>
+        <p class="hint">XGBoost regressor · SHAP TreeExplainer · standardized k-NN for similarity · real Numbeo data.</p>
       </div>
 
       <section class="explainer">
         <h2>Understanding this view</h2>
-        <p>The other tabs look at single cities; this one zooms out to the patterns hidden
-           across all of them — and shows how trustworthy the model is.</p>
+        <p>The other tabs look at single cities; this one zooms out to the patterns across all
+           of them — and shows how trustworthy the model is.</p>
         <div class="explainer-steps">
           <div class="estep"><span class="n">1</span>
-            <p><b>Global cost drivers.</b> Averaged over every city, which categories move
-               the index the most. It's the typical <em>size</em> of each factor's effect, so
-               the longest bar is the lever that matters most worldwide — usually housing.</p></div>
+            <p><b>Global cost drivers.</b> Averaged over every city, which categories move the
+               index the most. Rent &amp; housing typically dominates.</p></div>
           <div class="estep"><span class="n">2</span>
-            <p><b>Regions table.</b> Average cost, income and affordability burden by world
-               region. It reveals that "most expensive" and "hardest to afford" are not the
-               same list — high wages can offset high prices.</p></div>
+            <p><b>Regions table.</b> Average cost, rent and purchasing power by world region —
+               revealing that "most expensive" and "hardest to afford" are different lists.</p></div>
           <div class="estep"><span class="n">3</span>
-            <p><b>Model card.</b> How well the model does on cities it never saw while
-               learning. <b>R²</b> is the share of variation it explains (1.0 = perfect);
-               <b>MAE</b> is the average miss, in index points.</p></div>
+            <p><b>Model card.</b> Accuracy on cities held out of training. <b>R²</b> is the share
+               of variation explained (1.0 = perfect); <b>MAE</b> is the average miss, in index
+               points.</p></div>
         </div>
       </section>
     </section>
@@ -182,7 +186,7 @@
       <div class="grid two">
         <div class="card">
           <h3>Build a custom cost profile</h3>
-          <p class="hint">Move the sliders to model a hypothetical place, then see the predicted index and its drivers.</p>
+          <p class="hint">Set each index (New Delhi = 100), pick a region, then see the predicted total cost and its drivers.</p>
           <form id="predictForm" class="slider-form"></form>
           <div class="form-row">
             <label>Region <select id="predRegion"></select></label>
@@ -191,7 +195,7 @@
         </div>
         <div class="card">
           <div class="card metric inset">
-            <div class="metric-label">Predicted index</div>
+            <div class="metric-label">Predicted total cost (New Delhi = 100)</div>
             <div class="metric-value" id="predIndex">—</div>
           </div>
           <h3>Drivers</h3>
@@ -202,27 +206,26 @@
       <section class="explainer">
         <h2>Understanding this view</h2>
         <p>A sandbox for building a hypothetical place. Set the costs yourself and watch the
-           model react — the best way to <em>feel</em> how much each factor really matters.</p>
+           model react — the best way to <em>feel</em> how much each factor matters.</p>
         <div class="explainer-steps">
           <div class="estep"><span class="n">1</span>
-            <p><b>The sliders.</b> Dial each cost category, the local income and the density
-               to any values you like, then choose a region.</p></div>
+            <p><b>The sliders.</b> Dial rent, groceries, restaurants and purchasing power
+               (all relative to New Delhi = 100) and choose a region.</p></div>
           <div class="estep"><span class="n">2</span>
-            <p><b>Predict &amp; explain.</b> The model estimates the overall index for your
-               invented city and breaks down which of your settings pushed the score up or
-               down — the same SHAP explanation used for real cities.</p></div>
+            <p><b>Predict &amp; explain.</b> The model estimates the total cost for your
+               invented city and breaks down, via SHAP, which settings pushed it up or down.</p></div>
           <div class="estep"><span class="n">3</span>
-            <p><b>What it teaches.</b> Move one slider at a time. You'll see that raising
-               housing shifts the index far more than raising utilities — a direct, hands-on
-               view of which costs dominate.</p></div>
+            <p><b>What it teaches.</b> Move one slider at a time — raising rent shifts the
+               index far more than raising restaurants, a hands-on view of which costs
+               dominate.</p></div>
         </div>
       </section>
     </section>
   </main>
 
   <footer>
-    <span>Cost of Living Explainer — an ML tool for understanding socioeconomic problems.</span>
-    <span class="muted">Synthetic demo data · swap in Numbeo/BLS to go live.</span>
+    <span>Cost of Living Explainer — explainable ML for a socioeconomic question.</span>
+    <span class="muted">Real data: Numbeo cost-of-living indices · re-based to New Delhi = 100.</span>
   </footer>
 
   <script src="app.js"></script>
