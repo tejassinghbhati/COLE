@@ -57,12 +57,33 @@ cost-of-living-explainer/
 └── docs/HOW_IT_WORKS.md           scientific deep-dive
 ```
 
-## Quick start (Windows / PowerShell)
+## Quick start
+
+First clone the repo and move into the backend:
+
+```bash
+git clone https://github.com/tejassinghbhati/COLE.git
+cd COLE/backend
+```
+
+**Windows / PowerShell**
 
 ```powershell
-cd E:\Youtube\apps\cost-of-living-explainer\backend
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+python -m scripts.build_dataset        # 1. build real dataset (New Delhi = 100)
+python -m scripts.generate_overviews   # 2. write per-city overviews
+python -m scripts.train                # 3. train model + SHAP explainer
+uvicorn app.main:app --reload          # 4. run
+```
+
+**macOS / Linux**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 
 python -m scripts.build_dataset        # 1. build real dataset (New Delhi = 100)
@@ -76,10 +97,17 @@ Then open <http://127.0.0.1:8000>
 ## Enabling LLM-written overviews
 
 Overviews use a deterministic, data-driven template by default (no key needed). To get
-**Claude-written** overviews instead:
+**Claude-written** overviews instead, set your API key and re-run the overview step:
 
 ```powershell
+# Windows / PowerShell
 $env:ANTHROPIC_API_KEY = "sk-ant-..."
+python -m scripts.generate_overviews   # re-generates via Claude Haiku, caches to JSON
+```
+
+```bash
+# macOS / Linux
+export ANTHROPIC_API_KEY="sk-ant-..."
 python -m scripts.generate_overviews   # re-generates via Claude Haiku, caches to JSON
 ```
 
