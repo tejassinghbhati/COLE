@@ -2,4 +2,5 @@
 __pycache__/
 *.pyc
 backend/models/*.joblib
+backend/data/geonames_cities15000.txt
 .DS_Store

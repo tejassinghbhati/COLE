@@ -1,0 +1,2182 @@
+{
+"Zurich|Switzerland": [
+47.3775,
+8.5213
+],
+"New York, NY|United States": [
+40.75,
+-73.98
+],
+"George Town|Cayman Islands": [
+19.2866,
+-81.3744
+],
+"Geneva|Switzerland": [
+46.2022,
+6.1457
+],
+"San Francisco, CA|United States": [
+37.7749,
+-122.4194
+],
+"Honolulu, HI|United States": [
+21.3069,
+-157.8583
+],
+"Boston, MA|United States": [
+42.3584,
+-71.0598
+],
+"Lucerne|Switzerland": [
+47.0502,
+8.3093
+],
+"Lausanne|Switzerland": [
+46.516,
+6.6328
+],
+"Basel|Switzerland": [
+47.5584,
+7.5733
+],
+"Washington, DC|United States": [
+38.8951,
+-77.0364
+],
+"Singapore|Singapore": [
+1.2897,
+103.8501
+],
+"Bern|Switzerland": [
+46.9481,
+7.4474
+],
+"Lugano|Switzerland": [
+46.0101,
+8.96
+],
+"San Jose, CA|United States": [
+37.3394,
+-121.895
+],
+"San Diego, CA|United States": [
+32.7157,
+-117.1647
+],
+"Tel Aviv-Yafo|Israel": [
+32.08,
+34.77
+],
+"London|United Kingdom": [
+51.5085,
+-0.1257
+],
+"St. Gallen|Switzerland": [
+47.4245,
+9.3767
+],
+"Miami, FL|United States": [
+25.7743,
+-80.1937
+],
+"Seattle, WA|United States": [
+47.6062,
+-122.3321
+],
+"Los Angeles, CA|United States": [
+34.0522,
+-118.2437
+],
+"Reykjavik|Iceland": [
+64.1355,
+-21.8954
+],
+"Jersey City, NJ|United States": [
+40.7282,
+-74.0776
+],
+"Irvine, CA|United States": [
+33.6695,
+-117.8231
+],
+"Oakland, CA|United States": [
+37.8044,
+-122.2708
+],
+"Arlington, VA|United States": [
+32.7357,
+-97.1081
+],
+"Fort Lauderdale, FL|United States": [
+26.1223,
+-80.1434
+],
+"Amsterdam|Netherlands": [
+52.374,
+4.8897
+],
+"Sydney|Australia": [
+-33.8678,
+151.2073
+],
+"Jerusalem|Israel": [
+31.769,
+35.2163
+],
+"Hong Kong|Hong Kong (China)": [
+22.2783,
+114.1747
+],
+"Dublin|Ireland": [
+53.3331,
+-6.2489
+],
+"Oslo|Norway": [
+59.9127,
+10.7461
+],
+"Luxembourg|Luxembourg": [
+49.6098,
+6.1327
+],
+"Copenhagen|Denmark": [
+55.6759,
+12.5655
+],
+"Portland, OR|United States": [
+45.5234,
+-122.6762
+],
+"Chicago, IL|United States": [
+41.85,
+-87.65
+],
+"Philadelphia, PA|United States": [
+39.9524,
+-75.1636
+],
+"Anchorage, AK|United States": [
+61.2181,
+-149.9003
+],
+"Sacramento, CA|United States": [
+38.5816,
+-121.4944
+],
+"Denver, CO|United States": [
+39.7392,
+-104.9847
+],
+"Stavanger|Norway": [
+58.9701,
+5.7333
+],
+"Galway|Ireland": [
+53.2724,
+-9.051
+],
+"Nashville, TN|United States": [
+36.1659,
+-86.7844
+],
+"Oxford|United Kingdom": [
+51.7522,
+-1.256
+],
+"Atlanta, GA|United States": [
+33.749,
+-84.388
+],
+"Bergen|Norway": [
+60.393,
+5.3242
+],
+"Dallas, TX|United States": [
+32.7831,
+-96.8067
+],
+"Tampa, FL|United States": [
+27.9475,
+-82.4584
+],
+"Paris|France": [
+48.8534,
+2.3488
+],
+"Cork|Ireland": [
+51.898,
+-8.4706
+],
+"Haarlem|Netherlands": [
+52.3808,
+4.6368
+],
+"Guildford|United Kingdom": [
+51.2354,
+-0.5743
+],
+"Rotterdam|Netherlands": [
+51.9225,
+4.4792
+],
+"Gold Coast|Australia": [
+-28.0003,
+153.4309
+],
+"Melbourne|Australia": [
+-37.814,
+144.9633
+],
+"Utrecht|Netherlands": [
+52.0908,
+5.1222
+],
+"Munich|Germany": [
+48.1374,
+11.5755
+],
+"Trondheim|Norway": [
+63.4305,
+10.3951
+],
+"Cambridge|United Kingdom": [
+52.2,
+0.1167
+],
+"New Orleans, LA|United States": [
+29.9547,
+-90.0751
+],
+"Reno, NV|United States": [
+39.5296,
+-119.8138
+],
+"Phoenix, AZ|United States": [
+33.4484,
+-112.074
+],
+"Stockholm|Sweden": [
+59.3294,
+18.0687
+],
+"Canberra|Australia": [
+-35.2835,
+149.1281
+],
+"Syracuse, NY|United States": [
+43.0481,
+-76.1474
+],
+"Austin, TX|United States": [
+30.2672,
+-97.7431
+],
+"Albany, NY|United States": [
+42.6526,
+-73.7562
+],
+"Orlando, FL|United States": [
+28.5383,
+-81.3792
+],
+"Charlotte, NC|United States": [
+35.2271,
+-80.8431
+],
+"Milan|Italy": [
+45.4643,
+9.1895
+],
+"Ann Arbor, MI|United States": [
+42.2776,
+-83.7409
+],
+"Winston-Salem, NC|United States": [
+36.0999,
+-80.2442
+],
+"Dubai|United Arab Emirates": [
+25.0772,
+55.3093
+],
+"Minneapolis, MN|United States": [
+44.98,
+-93.2638
+],
+"Brighton|United Kingdom": [
+50.8284,
+-0.1395
+],
+"Haifa|Israel": [
+32.813,
+34.9993
+],
+"The Hague (Den Haag)|Netherlands": [
+52.0767,
+4.2986
+],
+"Colorado Springs, CO|United States": [
+38.8339,
+-104.8214
+],
+"Perth|Australia": [
+-31.9522,
+115.8614
+],
+"Vancouver|Canada": [
+49.2497,
+-123.1193
+],
+"Aarhus|Denmark": [
+56.1567,
+10.2108
+],
+"Salzburg|Austria": [
+47.7994,
+13.044
+],
+"Bristol|United Kingdom": [
+51.4552,
+-2.5966
+],
+"Delft|Netherlands": [
+52.0067,
+4.3556
+],
+"Madison, WI|United States": [
+43.0731,
+-89.4012
+],
+"Fort Worth, TX|United States": [
+32.7254,
+-97.3208
+],
+"Brisbane|Australia": [
+-27.4679,
+153.0281
+],
+"Edinburgh|United Kingdom": [
+55.9521,
+-3.1965
+],
+"Reading|United Kingdom": [
+51.4562,
+-0.9711
+],
+"Greenville, SC|United States": [
+35.6127,
+-77.3663
+],
+"Baltimore, MD|United States": [
+39.2904,
+-76.6122
+],
+"Spokane, WA|United States": [
+47.6597,
+-117.4291
+],
+"Leiden|Netherlands": [
+52.1583,
+4.4931
+],
+"Adelaide|Australia": [
+-34.9287,
+138.5986
+],
+"Columbus, OH|United States": [
+39.9612,
+-82.9988
+],
+"Las Vegas, NV|United States": [
+36.175,
+-115.1372
+],
+"Berlin|Germany": [
+52.5244,
+13.4105
+],
+"Innsbruck|Austria": [
+47.2627,
+11.3945
+],
+"Buffalo, NY|United States": [
+42.8865,
+-78.8784
+],
+"Eindhoven|Netherlands": [
+51.4408,
+5.4778
+],
+"Birmingham, AL|United States": [
+33.5207,
+-86.8025
+],
+"Hobart|Australia": [
+-42.8794,
+147.3294
+],
+"Vienna|Austria": [
+48.2085,
+16.3721
+],
+"Gainesville, FL|United States": [
+29.6516,
+-82.3248
+],
+"Vancouver, WA|United States": [
+45.6387,
+-122.6615
+],
+"Saint Louis, MO|United States": [
+16.02,
+-16.51
+],
+"Frankfurt|Germany": [
+52.3471,
+14.5506
+],
+"Richmond, VA|United States": [
+37.5538,
+-77.4603
+],
+"Victoria|Canada": [
+48.4359,
+-123.3516
+],
+"Indianapolis, IN|United States": [
+39.7684,
+-86.158
+],
+"Fort Collins, CO|United States": [
+40.5853,
+-105.0844
+],
+"Brussels|Belgium": [
+50.8505,
+4.3488
+],
+"Heidelberg|Germany": [
+49.4077,
+8.6908
+],
+"Manchester|United Kingdom": [
+53.4809,
+-2.2374
+],
+"Raleigh, NC|United States": [
+35.7721,
+-78.6386
+],
+"Southampton|United Kingdom": [
+50.904,
+-1.4043
+],
+"Helsinki|Finland": [
+60.1695,
+24.9354
+],
+"Florence|Italy": [
+43.7792,
+11.2463
+],
+"Houston, TX|United States": [
+29.7633,
+-95.3633
+],
+"San Juan|Puerto Rico": [
+18.4663,
+-66.1057
+],
+"Knoxville, TN|United States": [
+35.9606,
+-83.9207
+],
+"Nice|France": [
+43.7031,
+7.2661
+],
+"Espoo|Finland": [
+60.2052,
+24.6522
+],
+"Omaha, NE|United States": [
+41.2563,
+-95.9404
+],
+"Aalborg|Denmark": [
+57.048,
+9.9187
+],
+"Toronto|Canada": [
+43.7064,
+-79.3986
+],
+"Milwaukee, WI|United States": [
+43.0389,
+-87.9065
+],
+"Salt Lake City, UT|United States": [
+40.7608,
+-111.8911
+],
+"Boise, ID|United States": [
+43.6135,
+-116.2035
+],
+"Pittsburgh, PA|United States": [
+40.4406,
+-79.9959
+],
+"Dusseldorf|Germany": [
+51.2204,
+6.78
+],
+"Detroit, MI|United States": [
+42.3314,
+-83.0457
+],
+"Hamburg|Germany": [
+53.5507,
+9.993
+],
+"Milton Keynes|United Kingdom": [
+52.0417,
+-0.7558
+],
+"Sliema|Malta": [
+35.9125,
+14.5017
+],
+"San Antonio, TX|United States": [
+29.4241,
+-98.4936
+],
+"Cleveland, OH|United States": [
+41.4995,
+-81.6954
+],
+"Birmingham|United Kingdom": [
+52.4814,
+-1.8998
+],
+"Glasgow|United Kingdom": [
+55.8651,
+-4.2576
+],
+"Kansas City, MO|United States": [
+39.0997,
+-94.5786
+],
+"Cincinnati, OH|United States": [
+39.1271,
+-84.5144
+],
+"Cologne|Germany": [
+50.9333,
+6.95
+],
+"Oklahoma City, OK|United States": [
+35.4676,
+-97.5164
+],
+"Jacksonville, FL|United States": [
+30.3322,
+-81.6556
+],
+"Burlington|Canada": [
+43.3862,
+-79.8371
+],
+"Darmstadt|Germany": [
+49.8717,
+8.6503
+],
+"Eugene, OR|United States": [
+44.0521,
+-123.0867
+],
+"Abu Dhabi|United Arab Emirates": [
+24.4512,
+54.397
+],
+"Karlsruhe|Germany": [
+49.0094,
+8.4044
+],
+"Limassol|Cyprus": [
+34.6841,
+33.0379
+],
+"Surrey|Canada": [
+49.1063,
+-122.8251
+],
+"Gent|Belgium": [
+51.05,
+3.7167
+],
+"Freiburg im Breisgau|Germany": [
+47.9959,
+7.8522
+],
+"Rochester, NY|United States": [
+43.1548,
+-77.6156
+],
+"Odense|Denmark": [
+55.3959,
+10.3883
+],
+"Groningen|Netherlands": [
+53.2192,
+6.5667
+],
+"Mississauga|Canada": [
+43.5789,
+-79.6583
+],
+"Stuttgart|Germany": [
+48.7823,
+9.177
+],
+"Valletta|Malta": [
+35.8997,
+14.5148
+],
+"Strasbourg|France": [
+48.5839,
+7.7455
+],
+"Wiesbaden|Germany": [
+50.086,
+8.2444
+],
+"Augsburg|Germany": [
+48.3715,
+10.8985
+],
+"Guelph|Canada": [
+43.5459,
+-80.256
+],
+"Bonn|Germany": [
+50.7344,
+7.0955
+],
+"Marseille|France": [
+43.297,
+5.3811
+],
+"Leeds|United Kingdom": [
+53.7965,
+-1.5478
+],
+"Antwerp|Belgium": [
+51.2205,
+4.4003
+],
+"Belfast|United Kingdom": [
+54.5968,
+-5.9254
+],
+"Mainz|Germany": [
+49.9819,
+8.2801
+],
+"Brescia|Italy": [
+45.5356,
+10.2147
+],
+"Lyon|France": [
+45.7491,
+4.8479
+],
+"Bologna|Italy": [
+44.4938,
+11.3387
+],
+"Ottawa|Canada": [
+45.4112,
+-75.6981
+],
+"Pisa|Italy": [
+43.7085,
+10.4036
+],
+"Wellington|New Zealand": [
+-41.2866,
+174.7756
+],
+"Newcastle upon Tyne|United Kingdom": [
+54.9733,
+-1.614
+],
+"Barcelona|Spain": [
+41.3888,
+2.159
+],
+"Kelowna|Canada": [
+49.8831,
+-119.4857
+],
+"Albuquerque, NM|United States": [
+35.0845,
+-106.6511
+],
+"Nottingham|United Kingdom": [
+52.9536,
+-1.1505
+],
+"Doha|Qatar": [
+25.2855,
+51.531
+],
+"Tucson, AZ|United States": [
+32.2217,
+-110.9265
+],
+"Auckland|New Zealand": [
+-36.8485,
+174.7635
+],
+"Madrid|Spain": [
+40.4165,
+-3.7026
+],
+"Aberdeen|United Kingdom": [
+57.1437,
+-2.0981
+],
+"Halifax|Canada": [
+44.6427,
+-63.5769
+],
+"Cardiff|United Kingdom": [
+51.48,
+-3.18
+],
+"Calgary|Canada": [
+51.0501,
+-114.0853
+],
+"Tulsa, OK|United States": [
+36.154,
+-95.9928
+],
+"Coventry|United Kingdom": [
+52.4066,
+-1.5122
+],
+"Leuven|Belgium": [
+50.8796,
+4.7009
+],
+"Liverpool|United Kingdom": [
+53.4106,
+-2.9779
+],
+"Bordeaux|France": [
+44.8412,
+-0.5805
+],
+"Kitchener|Canada": [
+43.4254,
+-80.5112
+],
+"Louisville, KY|United States": [
+38.2542,
+-85.7594
+],
+"Tampere|Finland": [
+61.4991,
+23.7871
+],
+"Bremen|Germany": [
+53.0758,
+8.8072
+],
+"Graz|Austria": [
+47.0673,
+15.442
+],
+"Essen|Germany": [
+51.4566,
+7.0123
+],
+"Nanaimo, BC|Canada": [
+49.1664,
+-123.94
+],
+"Columbia, SC|United States": [
+34.0007,
+-81.0348
+],
+"Nuremberg|Germany": [
+49.4542,
+11.0775
+],
+"Linz|Austria": [
+48.3064,
+14.2861
+],
+"Toulouse|France": [
+43.6043,
+1.4437
+],
+"Malmo|Sweden": [
+55.6059,
+13.0007
+],
+"Rome|Italy": [
+41.8919,
+12.5113
+],
+"Palma de Mallorca|Spain": [
+39.5696,
+2.6502
+],
+"Erfurt|Germany": [
+50.9773,
+11.0354
+],
+"Ajman|United Arab Emirates": [
+25.4018,
+55.4788
+],
+"Uppsala|Sweden": [
+59.8588,
+17.6389
+],
+"London|Canada": [
+42.9834,
+-81.233
+],
+"Verona|Italy": [
+45.4385,
+10.9938
+],
+"Sheffield|United Kingdom": [
+53.383,
+-1.4659
+],
+"Lisbon|Portugal": [
+38.7251,
+-9.1498
+],
+"Mannheim|Germany": [
+49.4891,
+8.4669
+],
+"Hanover|Germany": [
+39.1929,
+-76.7241
+],
+"Gothenburg|Sweden": [
+57.7072,
+11.9668
+],
+"Wichita, KS|United States": [
+37.6922,
+-97.3375
+],
+"Erlangen|Germany": [
+49.591,
+11.0078
+],
+"Padova|Italy": [
+45.408,
+11.8859
+],
+"Huntsville, AL|United States": [
+34.7304,
+-86.5859
+],
+"Brampton|Canada": [
+43.6834,
+-79.7663
+],
+"Dundee|United Kingdom": [
+56.4691,
+-2.9749
+],
+"Duisburg|Germany": [
+51.4325,
+6.7652
+],
+"Turku|Finland": [
+60.4515,
+22.2687
+],
+"Trento|Italy": [
+46.0679,
+11.1211
+],
+"Seoul|South Korea": [
+37.566,
+126.9784
+],
+"Modena|Italy": [
+44.6478,
+10.9254
+],
+"Dresden|Germany": [
+51.0509,
+13.7383
+],
+"Edmonton|Canada": [
+53.5501,
+-113.4687
+],
+"Leipzig|Germany": [
+51.3396,
+12.3713
+],
+"Lund|Sweden": [
+55.7058,
+13.1932
+],
+"Hamilton|Canada": [
+43.2501,
+-79.8496
+],
+"Montreal|Canada": [
+45.5088,
+-73.5878
+],
+"Lethbridge, AB|Canada": [
+49.7,
+-112.8186
+],
+"Treviso|Italy": [
+45.6667,
+12.2416
+],
+"Montpellier|France": [
+43.6109,
+3.8763
+],
+"Lille|France": [
+50.6339,
+3.0551
+],
+"Regina|Canada": [
+50.4501,
+-104.6178
+],
+"Prague|Czech Republic": [
+50.088,
+14.4208
+],
+"Waterloo|Canada": [
+43.4668,
+-80.5164
+],
+"Aachen|Germany": [
+50.7766,
+6.0834
+],
+"Oulu|Finland": [
+65.0124,
+25.4682
+],
+"Villach|Austria": [
+46.6103,
+13.8558
+],
+"Grenoble|France": [
+45.1787,
+5.7148
+],
+"Bilbao|Spain": [
+43.2627,
+-2.9253
+],
+"Saskatoon|Canada": [
+52.1324,
+-106.6689
+],
+"Paphos|Cyprus": [
+34.7768,
+32.4245
+],
+"Kingston|Canada": [
+44.2298,
+-76.481
+],
+"St. John's, Newfoundland and Labrador|Canada": [
+47.5649,
+-52.7093
+],
+"Ljubljana|Slovenia": [
+46.0511,
+14.5051
+],
+"Trieste|Italy": [
+45.6495,
+13.7768
+],
+"Moncton|Canada": [
+46.0945,
+-64.7965
+],
+"Tallinn|Estonia": [
+59.437,
+24.7535
+],
+"Braunschweig|Germany": [
+52.2659,
+10.5267
+],
+"Rostock|Germany": [
+54.0887,
+12.1405
+],
+"Christchurch|New Zealand": [
+-43.5333,
+172.6333
+],
+"Moscow|Russia": [
+55.752,
+37.6178
+],
+"Naples|Italy": [
+40.8522,
+14.2681
+],
+"Turin|Italy": [
+45.0705,
+7.6868
+],
+"Funchal|Portugal": [
+32.6657,
+-16.9255
+],
+"San Jose|Costa Rica": [
+9.9339,
+-84.0849
+],
+"Windsor|Canada": [
+42.3001,
+-83.0165
+],
+"Winnipeg|Canada": [
+49.8844,
+-97.147
+],
+"Cagliari|Italy": [
+39.2305,
+9.1192
+],
+"Genoa|Italy": [
+44.4048,
+8.9444
+],
+"Kingston|Jamaica": [
+17.997,
+-76.7936
+],
+"Kassel|Germany": [
+51.3167,
+9.5
+],
+"Bratislava|Slovakia": [
+48.1482,
+17.1067
+],
+"Split|Croatia": [
+43.5089,
+16.4392
+],
+"Valencia|Spain": [
+39.4739,
+-0.3797
+],
+"Tokyo|Japan": [
+35.6895,
+139.6917
+],
+"Malaga|Spain": [
+36.7202,
+-4.4203
+],
+"Warsaw|Poland": [
+52.2298,
+21.0118
+],
+"Quebec City|Canada": [
+46.8139,
+-71.208
+],
+"Nicosia|Cyprus": [
+35.1728,
+33.354
+],
+"Porto|Portugal": [
+41.1485,
+-8.611
+],
+"Chemnitz|Germany": [
+50.8357,
+12.9292
+],
+"Budapest|Hungary": [
+47.4984,
+19.0404
+],
+"San Miguel de Allende|Mexico": [
+20.9153,
+-100.7439
+],
+"Puerto Vallarta|Mexico": [
+20.617,
+-105.2302
+],
+"Reggio Nell'emilia|Italy": [
+44.6983,
+10.6312
+],
+"Valladolid|Spain": [
+41.6554,
+-4.7235
+],
+"Bari|Italy": [
+41.1207,
+16.8698
+],
+"Oviedo|Spain": [
+43.3603,
+-5.8448
+],
+"Rimini|Italy": [
+44.0575,
+12.5653
+],
+"Mexico City|Mexico": [
+19.4285,
+-99.1277
+],
+"Panama City|Panama": [
+8.9936,
+-79.5197
+],
+"Beirut|Lebanon": [
+33.8933,
+35.5016
+],
+"Bergamo|Italy": [
+45.696,
+9.6672
+],
+"Montevideo|Uruguay": [
+-34.9033,
+-56.1882
+],
+"Remagen|Germany": [
+50.5788,
+7.227
+],
+"Ras al-Khaimah|United Arab Emirates": [
+25.7895,
+55.9432
+],
+"Athens|Greece": [
+37.9838,
+23.7278
+],
+"Alicante|Spain": [
+38.3452,
+-0.4815
+],
+"Brno|Czech Republic": [
+49.1952,
+16.608
+],
+"Riyadh|Saudi Arabia": [
+24.6877,
+46.7219
+],
+"Larnaca|Cyprus": [
+34.9221,
+33.6279
+],
+"Monterrey|Mexico": [
+25.6843,
+-100.3172
+],
+"Zagreb|Croatia": [
+45.8144,
+15.978
+],
+"Taipei|Taiwan": [
+25.0531,
+121.5264
+],
+"Tartu|Estonia": [
+58.3806,
+26.7251
+],
+"Las Palmas de Gran Canaria|Spain": [
+28.1018,
+-15.4157
+],
+"Tarragona|Spain": [
+41.1191,
+1.2454
+],
+"Buenos Aires|Argentina": [
+-34.6131,
+-58.3772
+],
+"Vilnius|Lithuania": [
+54.6892,
+25.2798
+],
+"Kosice|Slovakia": [
+48.7144,
+21.258
+],
+"Sharjah|United Arab Emirates": [
+25.3342,
+55.4122
+],
+"Gdansk|Poland": [
+54.3523,
+18.6491
+],
+"Heraklion|Greece": [
+35.3387,
+25.1442
+],
+"Krakow (Cracow)|Poland": [
+50.0614,
+19.9366
+],
+"Thessaloniki|Greece": [
+40.6407,
+22.9349
+],
+"Palermo|Italy": [
+38.1166,
+13.3636
+],
+"Aveiro|Portugal": [
+40.6457,
+-8.6464
+],
+"Riga|Latvia": [
+56.946,
+24.1059
+],
+"Rijeka|Croatia": [
+45.3267,
+14.4424
+],
+"Sofia|Bulgaria": [
+42.6975,
+23.3241
+],
+"Budva|Montenegro": [
+42.2872,
+18.8392
+],
+"Catania|Italy": [
+37.4922,
+15.0704
+],
+"Istanbul|Turkey": [
+41.0138,
+28.9497
+],
+"Wroclaw|Poland": [
+51.1029,
+17.0301
+],
+"Manama|Bahrain": [
+26.2279,
+50.5857
+],
+"Seville (Sevilla)|Spain": [
+37.405,
+-5.98
+],
+"Kuwait City|Kuwait": [
+29.367,
+47.9743
+],
+"New Taipei City|Taiwan": [
+25.062,
+121.457
+],
+"Belgrade|Serbia": [
+44.804,
+20.4651
+],
+"Plzen|Czech Republic": [
+49.7475,
+13.3776
+],
+"Coimbra|Portugal": [
+40.2069,
+-8.42
+],
+"Gdynia|Poland": [
+54.5189,
+18.5319
+],
+"Tirana|Albania": [
+41.3274,
+19.8187
+],
+"Abidjan|Ivory Coast": [
+5.3544,
+-4.0017
+],
+"Braga|Portugal": [
+41.5514,
+-8.4231
+],
+"Cancun|Mexico": [
+21.1743,
+-86.8466
+],
+"Ostrava|Czech Republic": [
+49.8347,
+18.282
+],
+"Granada|Spain": [
+37.1882,
+-3.6067
+],
+"Kaunas|Lithuania": [
+54.9016,
+23.9091
+],
+"Queretaro (Santiago de Querétaro)|Mexico": [
+20.5881,
+-100.3881
+],
+"Pecs|Hungary": [
+46.0762,
+18.2281
+],
+"San Salvador|El Salvador": [
+13.6893,
+-89.1872
+],
+"Debrecen|Hungary": [
+47.5317,
+21.6244
+],
+"Olomouc|Czech Republic": [
+49.5955,
+17.2518
+],
+"Al Khobar|Saudi Arabia": [
+26.2794,
+50.2083
+],
+"Guadalajara|Mexico": [
+20.6774,
+-103.3475
+],
+"Poznan|Poland": [
+52.4069,
+16.9299
+],
+"Shanghai|China": [
+31.2222,
+121.4581
+],
+"Caracas|Venezuela": [
+10.488,
+-66.8792
+],
+"Cluj-Napoca|Romania": [
+46.7667,
+23.6
+],
+"Muscat|Oman": [
+23.5841,
+58.4078
+],
+"Bali|Indonesia": [
+22.6486,
+88.3411
+],
+"Cape Town|South Africa": [
+-33.9258,
+18.4232
+],
+"Varna|Bulgaria": [
+43.2191,
+27.9102
+],
+"Lodz|Poland": [
+51.7706,
+19.4739
+],
+"Bangkok|Thailand": [
+13.754,
+100.5014
+],
+"Makati|Philippines": [
+14.5503,
+121.0327
+],
+"Cordoba|Argentina": [
+-31.4065,
+-64.1885
+],
+"Merida|Mexico": [
+20.967,
+-89.6232
+],
+"Addis Ababa|Ethiopia": [
+9.025,
+38.7469
+],
+"Szeged|Hungary": [
+46.253,
+20.1482
+],
+"Brasov|Romania": [
+45.6486,
+25.6061
+],
+"Phuket|Thailand": [
+7.8906,
+98.3981
+],
+"Novi Sad|Serbia": [
+45.2517,
+19.8369
+],
+"Osaka|Japan": [
+34.6938,
+135.5011
+],
+"Yerevan|Armenia": [
+40.1776,
+44.5126
+],
+"Patras|Greece": [
+38.2462,
+21.7351
+],
+"Saint Petersburg|Russia": [
+59.9386,
+30.3141
+],
+"Bucharest|Romania": [
+44.4323,
+26.1063
+],
+"Beijing|China": [
+39.9075,
+116.3972
+],
+"Taichung|Taiwan": [
+24.1469,
+120.6839
+],
+"Yekaterinburg|Russia": [
+56.8573,
+60.6153
+],
+"Szczecin|Poland": [
+53.4289,
+14.553
+],
+"Podgorica|Montenegro": [
+42.4412,
+19.2631
+],
+"Jeddah (Jiddah)|Saudi Arabia": [
+21.4901,
+39.1862
+],
+"Izmir|Turkey": [
+38.4127,
+27.1384
+],
+"Katowice|Poland": [
+50.2597,
+19.0217
+],
+"Klaipeda|Lithuania": [
+55.7068,
+21.1391
+],
+"Medellin|Colombia": [
+6.245,
+-75.5715
+],
+"Kaohsiung|Taiwan": [
+22.6163,
+120.3133
+],
+"Ankara|Turkey": [
+39.9199,
+32.8543
+],
+"Kaliningrad|Russia": [
+54.7064,
+20.511
+],
+"Sao Paulo|Brazil": [
+-23.5475,
+-46.6361
+],
+"Santiago|Chile": [
+-33.4569,
+-70.6483
+],
+"Santo Domingo|Dominican Republic": [
+18.4719,
+-69.8923
+],
+"Ad Dammam|Saudi Arabia": [
+26.4344,
+50.1033
+],
+"Johannesburg|South Africa": [
+-26.2023,
+28.0436
+],
+"Sarajevo|Bosnia And Herzegovina": [
+43.8486,
+18.3564
+],
+"Shenzhen|China": [
+22.5455,
+114.0683
+],
+"Torun|Poland": [
+53.0138,
+18.5981
+],
+"Constanta|Romania": [
+44.1807,
+28.6343
+],
+"Tyumen|Russia": [
+57.1522,
+65.5272
+],
+"Accra|Ghana": [
+5.556,
+-0.1969
+],
+"Nizhny Novgorod|Russia": [
+56.333,
+44.0001
+],
+"Almaty|Kazakhstan": [
+43.2525,
+76.9115
+],
+"Amman|Jordan": [
+31.9552,
+35.945
+],
+"Windhoek|Namibia": [
+-22.57,
+17.0835
+],
+"Tbilisi|Georgia": [
+41.6914,
+44.8341
+],
+"Antalya|Turkey": [
+36.9081,
+30.6956
+],
+"Banja Luka|Bosnia And Herzegovina": [
+44.7788,
+17.2063
+],
+"Plovdiv|Bulgaria": [
+42.1539,
+24.75
+],
+"Bogota|Colombia": [
+4.6097,
+-74.0817
+],
+"Iasi|Romania": [
+47.1667,
+27.6
+],
+"Ulaanbaatar|Mongolia": [
+47.9167,
+106.9166
+],
+"Pretoria|South Africa": [
+-25.7449,
+28.1878
+],
+"Vlore|Albania": [
+40.4696,
+19.4838
+],
+"Chisinau|Moldova": [
+47.009,
+28.8594
+],
+"Kazan|Russia": [
+55.7887,
+49.1221
+],
+"Florianopolis|Brazil": [
+-27.5967,
+-48.5492
+],
+"Krasnodar|Russia": [
+45.0453,
+38.9818
+],
+"Kuala Lumpur|Malaysia": [
+3.1412,
+101.6865
+],
+"Burgas|Bulgaria": [
+42.5065,
+27.4689
+],
+"Pattaya|Thailand": [
+12.9333,
+100.8833
+],
+"Timisoara|Romania": [
+45.7537,
+21.2257
+],
+"Novosibirsk|Russia": [
+55.0226,
+82.9317
+],
+"Aguascalientes|Mexico": [
+21.8826,
+-102.2843
+],
+"Phnom Penh|Cambodia": [
+11.5625,
+104.916
+],
+"Bursa|Turkey": [
+40.1956,
+29.0601
+],
+"Rio de Janeiro|Brazil": [
+-22.9064,
+-43.1822
+],
+"Manila|Philippines": [
+14.6042,
+120.9822
+],
+"Harare|Zimbabwe": [
+-17.8277,
+31.0534
+],
+"Krasnoyarsk|Russia": [
+56.0374,
+92.9314
+],
+"Lagos|Nigeria": [
+6.4541,
+3.3947
+],
+"Santos|Brazil": [
+-23.9608,
+-46.3336
+],
+"Craiova|Romania": [
+44.3167,
+23.8
+],
+"Guangzhou|China": [
+23.1167,
+113.25
+],
+"Lima|Peru": [
+-12.0432,
+-77.0282
+],
+"Hangzhou|China": [
+30.2936,
+120.1614
+],
+"Sao Jose dos Campos|Brazil": [
+-23.1794,
+-45.8869
+],
+"Sibiu|Romania": [
+45.8,
+24.15
+],
+"Galati|Romania": [
+45.4369,
+28.0503
+],
+"Minsk|Belarus": [
+53.9002,
+27.5665
+],
+"Eskisehir|Turkey": [
+39.7767,
+30.5206
+],
+"Skopje|North Macedonia": [
+41.9965,
+21.4314
+],
+"Rostov-on-Don (Rostov-na-donu)|Russia": [
+47.22,
+39.7077
+],
+"Guayaquil|Ecuador": [
+-2.1962,
+-79.8862
+],
+"Mersin|Turkey": [
+36.812,
+34.6389
+],
+"Barranquilla|Colombia": [
+10.9685,
+-74.7813
+],
+"Casablanca|Morocco": [
+33.5883,
+-7.6114
+],
+"Tomsk|Russia": [
+56.5005,
+84.9822
+],
+"Brasilia|Brazil": [
+-15.7797,
+-47.9297
+],
+"Tangier|Morocco": [
+35.7673,
+-5.7998
+],
+"Suzhou|China": [
+31.3041,
+120.5954
+],
+"Durban|South Africa": [
+-29.8579,
+31.0292
+],
+"Campinas|Brazil": [
+-22.9056,
+-47.0608
+],
+"Cali|Colombia": [
+3.4305,
+-76.5199
+],
+"Rabat|Morocco": [
+34.0132,
+-6.8326
+],
+"Perm|Russia": [
+58.0105,
+56.2502
+],
+"Asuncion|Paraguay": [
+-25.2865,
+-57.647
+],
+"Baghdad|Iraq": [
+33.3406,
+44.4009
+],
+"Colombo|Sri Lanka": [
+6.9355,
+79.8487
+],
+"Kiev (Kyiv)|Ukraine": [
+50.4334,
+30.5166
+],
+"Belo Horizonte|Brazil": [
+-19.9208,
+-43.9378
+],
+"Targu Mures|Romania": [
+46.5425,
+24.5575
+],
+"Adana|Turkey": [
+36.9862,
+35.3253
+],
+"Curitiba|Brazil": [
+-25.4278,
+-49.2731
+],
+"Oradea|Romania": [
+47.0458,
+21.9183
+],
+"Erbil (Irbil)|Iraq": [
+36.1912,
+44.0094
+],
+"Astana (Nur-Sultan)|Kazakhstan": [
+51.1801,
+71.446
+],
+"Quito|Ecuador": [
+-0.2298,
+-78.525
+],
+"Baku|Azerbaijan": [
+40.3777,
+49.892
+],
+"Nis|Serbia": [
+43.3247,
+21.9033
+],
+"Porto Alegre|Brazil": [
+-30.0328,
+-51.2302
+],
+"Cebu|Philippines": [
+10.3167,
+123.8907
+],
+"Batumi, Ajara|Georgia": [
+41.6408,
+41.6306
+],
+"Salvador|Brazil": [
+-12.9756,
+-38.491
+],
+"Damascus|Syria": [
+33.5102,
+36.2913
+],
+"Joao Pessoa|Brazil": [
+-7.115,
+-34.8631
+],
+"Nairobi|Kenya": [
+-1.2833,
+36.8167
+],
+"Mumbai|India": [
+19.0728,
+72.8826
+],
+"Kuching|Malaysia": [
+1.55,
+110.3333
+],
+"Tashkent|Uzbekistan": [
+41.2647,
+69.2163
+],
+"Nanjing|China": [
+32.0617,
+118.7778
+],
+"Lviv|Ukraine": [
+49.8383,
+24.0232
+],
+"Recife|Brazil": [
+-8.0539,
+-34.8811
+],
+"Chiang Mai|Thailand": [
+18.7904,
+98.9847
+],
+"Bishkek|Kyrgyzstan": [
+42.87,
+74.59
+],
+"Marrakech|Morocco": [
+31.6295,
+-7.9811
+],
+"Santa Cruz|Bolivia": [
+-17.7863,
+-63.1812
+],
+"Kigali|Rwanda": [
+-1.95,
+30.0588
+],
+"Stara Zagora|Bulgaria": [
+42.432,
+25.6426
+],
+"Penang|Malaysia": [
+5.4141,
+100.3288
+],
+"Ho Chi Minh City|Vietnam": [
+10.823,
+106.6296
+],
+"Fortaleza|Brazil": [
+-3.7172,
+-38.5431
+],
+"Quezon City|Philippines": [
+14.6488,
+121.0509
+],
+"Agadir|Morocco": [
+30.4202,
+-9.5982
+],
+"Cuenca|Ecuador": [
+-2.8953,
+-78.9963
+],
+"Wuhan|China": [
+30.5833,
+114.2667
+],
+"Dnipro|Ukraine": [
+48.4666,
+35.0407
+],
+"Dushanbe|Tajikistan": [
+38.5358,
+68.779
+],
+"Pristina|Kosovo (Disputed Territory)": [
+42.6667,
+21.166
+],
+"Dar es Salaam|Tanzania": [
+-6.8235,
+39.2695
+],
+"Sousse|Tunisia": [
+35.8254,
+10.637
+],
+"Jakarta|Indonesia": [
+-6.2146,
+106.8451
+],
+"Changsha|China": [
+28.1987,
+112.9709
+],
+"Tunis|Tunisia": [
+36.819,
+10.1658
+],
+"Siem Reap|Cambodia": [
+13.3618,
+103.8606
+],
+"Chengdu|China": [
+30.6667,
+104.0667
+],
+"Da Nang|Vietnam": [
+16.0678,
+108.2208
+],
+"Kampala|Uganda": [
+0.3163,
+32.5822
+],
+"Qingdao, Shandong|China": [
+36.0649,
+120.3804
+],
+"Hanoi|Vietnam": [
+21.0245,
+105.8412
+],
+"Davao|Philippines": [
+7.0731,
+125.6128
+],
+"Chongqing|China": [
+29.5603,
+106.5577
+],
+"Odessa (Odesa)|Ukraine": [
+46.49,
+30.71
+],
+"Xi'an|China": [
+34.2583,
+108.9286
+],
+"Algiers|Algeria": [
+36.7323,
+3.0875
+],
+"Gurgaon|India": [
+28.4601,
+77.0263
+],
+"Tehran|Iran": [
+35.6944,
+51.4215
+],
+"Kharkiv|Ukraine": [
+49.9818,
+36.2548
+],
+"Islamabad|Pakistan": [
+33.7215,
+73.0433
+],
+"Dhaka|Bangladesh": [
+23.7104,
+90.4074
+],
+"Bangalore|India": [
+12.9719,
+77.5937
+],
+"Cairo|Egypt": [
+30.0626,
+31.2497
+],
+"Delhi|India": [
+28.6519,
+77.2315
+],
+"Pune|India": [
+18.5196,
+73.8554
+],
+"Navi Mumbai|India": [
+19.0368,
+73.0158
+],
+"Kathmandu|Nepal": [
+27.7017,
+85.3206
+],
+"Thane|India": [
+19.197,
+72.9635
+],
+"Bandung|Indonesia": [
+-6.9222,
+107.6069
+],
+"Hyderabad|India": [
+17.384,
+78.4564
+],
+"Chittagong|Bangladesh": [
+22.33,
+91.8
+],
+"Noida|India": [
+28.58,
+77.33
+],
+"Ahmedabad|India": [
+23.0258,
+72.5873
+],
+"Rawalpindi|Pakistan": [
+33.5973,
+73.0479
+],
+"Chandigarh|India": [
+30.7363,
+76.7884
+],
+"Lahore|Pakistan": [
+31.558,
+74.3507
+],
+"Karachi|Pakistan": [
+24.8608,
+67.0104
+],
+"Chennai|India": [
+13.0878,
+80.2785
+],
+"Giza|Egypt": [
+30.0094,
+31.2086
+],
+"Alexandria|Egypt": [
+31.2018,
+29.9158
+],
+"Surat|India": [
+21.1959,
+72.8302
+],
+"Jaipur|India": [
+26.9196,
+75.7878
+],
+"Dehradun|India": [
+30.3244,
+78.0339
+],
+"Kolkata|India": [
+22.5626,
+88.363
+],
+"Kochi|India": [
+9.9399,
+76.2602
+],
+"Vadodara|India": [
+22.2994,
+73.2081
+],
+"Thiruvananthapuram|India": [
+8.4855,
+76.9492
+],
+"Patna|India": [
+25.5941,
+85.1356
+],
+"Indore|India": [
+22.7179,
+75.8333
+],
+"Bhubaneswar|India": [
+20.2724,
+85.8338
+],
+"Bhopal|India": [
+23.2547,
+77.4029
+],
+"Guwahati|India": [
+26.1844,
+91.7458
+],
+"Rajkot|India": [
+22.2916,
+70.7932
+],
+"Lucknow (Lakhnau)|India": [
+26.8393,
+80.9231
+],
+"Coimbatore|India": [
+11.0055,
+76.9661
+]
+}

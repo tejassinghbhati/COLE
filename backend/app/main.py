@@ -15,6 +15,7 @@ POST /api/predict                predict + explain a custom cost profile
 """
 from __future__ import annotations
 
+import json
 import os
 
 from fastapi import FastAPI, HTTPException, Query
@@ -27,12 +28,14 @@ from app.schemas import Explanation, PredictRequest
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FRONTEND_DIR = os.path.normpath(os.path.join(HERE, "..", "frontend"))
+COORDS_JSON = os.path.join(HERE, "data", "coords.json")
 BASELINE = {"city": "New Delhi", "value": 100}
 
 app = FastAPI(title="Cost of Living Explainer", version="2.0.0")
 
 _MODEL: CostModel | None = None
 _OVERVIEWS: dict = {}
+_COORDS: dict = {}
 
 
 def get_model() -> CostModel:
@@ -47,11 +50,14 @@ def get_model() -> CostModel:
 
 @app.on_event("startup")
 def _warm() -> None:
-    global _OVERVIEWS
+    global _OVERVIEWS, _COORDS
     _OVERVIEWS = load_cache()
+    if os.path.exists(COORDS_JSON):
+        with open(COORDS_JSON, encoding="utf-8") as f:
+            _COORDS = json.load(f)
     try:
         get_model()
-        print(f"Model loaded. {len(_OVERVIEWS)} overviews cached.")
+        print(f"Model loaded. {len(_OVERVIEWS)} overviews, {len(_COORDS)} coords cached.")
     except HTTPException as e:
         print(f"[warn] {e.detail}")
 
@@ -76,16 +82,19 @@ def health() -> dict:
 def cities() -> dict:
     m = get_model()
     df = m.df.sort_values("total_cost_index", ascending=False)
-    items = [
-        {
-            "id": city_key(r["city"], r["country"]),
+    items = []
+    for _, r in df.iterrows():
+        cid = city_key(r["city"], r["country"])
+        latlng = _COORDS.get(cid)
+        items.append({
+            "id": cid,
             "city": r["city"], "country": r["country"], "region": r["region"],
             "total_cost_index": float(r["total_cost_index"]),
             "predicted_index": float(r["predicted_index"]),
             "purchasing_power_index": float(r["purchasing_power_index"]),
-        }
-        for _, r in df.iterrows()
-    ]
+            "lat": latlng[0] if latlng else None,
+            "lng": latlng[1] if latlng else None,
+        })
     return {"count": len(items), "baseline": BASELINE, "cities": items,
             "regions": m.regions, "feature_labels": FEATURE_LABELS,
             "cost_categories": COST_CATEGORY_COLS}
